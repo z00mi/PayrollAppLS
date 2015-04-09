@@ -1,0 +1,838 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Employee">
+    <EntityType.Attributes>
+      <CreatedModifiedPropertiesEnabled />
+    </EntityType.Attributes>
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Uid"
+        PropertyType=":Guid">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="FirstName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="LastName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Email"
+        PropertyType="Microsoft.LightSwitch.Extensions:EmailAddress?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Phone"
+        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Addresses"
+        Association="Employee_Address"
+        FromEnd="Employee"
+        ToEnd="Address" />
+      <NavigationProperty
+        Name="Affiliations"
+        Association="Employee_Affiliation"
+        FromEnd="Employee"
+        ToEnd="Affiliation" />
+      <NavigationProperty
+        Name="TimeCards"
+        Association="TimeCard_Employee"
+        FromEnd="Employee"
+        ToEnd="TimeCard" />
+      <NavigationProperty
+        Name="SaleReceipts"
+        Association="SaleReceipt_Employee"
+        FromEnd="Employee"
+        ToEnd="SaleReceipt" />
+      <EntityProperty
+        Name="PaymentScheduleType"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Weekely"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Biweekly"
+            Value="2" />
+          <SupportedValue
+            DisplayName="Monthly"
+            Value="3" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="PaymentClassificationType"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Commisioned"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Hourly"
+            Value="2" />
+          <SupportedValue
+            DisplayName="Salaried"
+            Value="3" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="PaymentMethodType"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Hold"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Direct"
+            Value="2" />
+          <SupportedValue
+            DisplayName="Mail"
+            Value="3" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="SalariedClassification"
+        Association="SalariedClassification_Employee"
+        FromEnd="Employee"
+        ToEnd="SalariedClassification" />
+      <NavigationProperty
+        Name="MailMethod"
+        Association="MailMethod_Employee"
+        FromEnd="Employee"
+        ToEnd="MailMethod" />
+      <NavigationProperty
+        Name="HourlyClassification"
+        Association="HourlyClassification_Employee"
+        FromEnd="Employee"
+        ToEnd="HourlyClassification" />
+      <NavigationProperty
+        Name="DirectMethod"
+        Association="DirectMethod_Employee"
+        FromEnd="Employee"
+        ToEnd="DirectMethod" />
+      <NavigationProperty
+        Name="CommisionedClasification"
+        Association="CommisionedClasification_Employee"
+        FromEnd="Employee"
+        ToEnd="CommisionedClasification" />
+      <NavigationProperty
+        Name="PayrollItems"
+        Association="PayrollItem_Employee"
+        FromEnd="Employee"
+        ToEnd="PayrollItem" />
+      <NavigationProperty
+        Name="EmployeePhoto"
+        Association="EmployeePhoto_Employee"
+        FromEnd="Employee"
+        ToEnd="EmployeePhoto" />
+      <EntityProperty
+        Name="CreatedBy"
+        IsReadOnly="True"
+        PropertyType=":Person?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Created"
+        IsReadOnly="True"
+        PropertyType=":DateTimeOffset?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ModifiedBy"
+        IsReadOnly="True"
+        PropertyType=":Person?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Modified"
+        IsReadOnly="True"
+        PropertyType=":DateTimeOffset?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <Hidden />
+          <UseForConcurrency />
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <EntityContainer
+    Name="ApplicationData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Employees"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Employee" />
+    <QueryOperation
+      Name="Employees_Single"
+      ReturnType="Employee">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Employees" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Employees_SingleOrDefault"
+      ReturnType="Employee">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Employees" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Name="Employee_Addresses"
+      Association="Employee_Address">
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+      <AssociationSetEnd
+        Name="Address"
+        EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet
+      Name="Employee_Affiliations"
+      Association="Employee_Affiliation">
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+      <AssociationSetEnd
+        Name="Affiliation"
+        EntitySet="Affiliations" />
+    </AssociationSet>
+    <AssociationSet
+      Name="TimeCard_Employees"
+      Association="TimeCard_Employee">
+      <AssociationSetEnd
+        Name="TimeCard"
+        EntitySet="TimeCards" />
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet
+      Name="SaleReceipt_Employees"
+      Association="SaleReceipt_Employee">
+      <AssociationSetEnd
+        Name="SaleReceipt"
+        EntitySet="SaleReceipts" />
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet
+      Name="SalariedClassification_Employees"
+      Association="SalariedClassification_Employee">
+      <AssociationSetEnd
+        Name="SalariedClassification"
+        EntitySet="SalariedClassifications" />
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet
+      Name="MailMethod_Employees"
+      Association="MailMethod_Employee">
+      <AssociationSetEnd
+        Name="MailMethod"
+        EntitySet="MailMethods" />
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet
+      Name="HourlyClassification_Employees"
+      Association="HourlyClassification_Employee">
+      <AssociationSetEnd
+        Name="HourlyClassification"
+        EntitySet="HourlyClassifications" />
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet
+      Name="DirectMethod_Employees"
+      Association="DirectMethod_Employee">
+      <AssociationSetEnd
+        Name="DirectMethod"
+        EntitySet="DirectMethods" />
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet
+      Name="CommisionedClasification_Employees"
+      Association="CommisionedClasification_Employee">
+      <AssociationSetEnd
+        Name="CommisionedClasification"
+        EntitySet="CommisionedClasifications" />
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet
+      Name="PayrollItem_Employees"
+      Association="PayrollItem_Employee">
+      <AssociationSetEnd
+        Name="PayrollItem"
+        EntitySet="PayrollItems" />
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet
+      Name="EmployeePhoto_Employees"
+      Association="EmployeePhoto_Employee">
+      <AssociationSetEnd
+        Name="EmployeePhoto"
+        EntitySet="EmployeePhotos" />
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association
+    Name="Employee_Address">
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Address"
+      Multiplicity="Many"
+      EntityType="Address" />
+  </Association>
+  <DataService
+    Name="ApplicationDataMapping">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <AssociationSetMapping
+      AssociationSet="Employee_Addresses">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Employee_Addresses" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Employee_Addresses]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Employee_Addresses]/Members[Address]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Employee_Address" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="Employee_Affiliations">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Employee_Affiliations" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Employee_Affiliations]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Employee_Affiliations]/Members[Affiliation]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Employee_Affiliation" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="TimeCard_Employees">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="TimeCard_Employees" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[TimeCard_Employees]/Members[TimeCard]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TimeCard_Employee" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[TimeCard_Employees]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="SaleReceipt_Employees">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="SaleReceipt_Employees" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[SaleReceipt_Employees]/Members[SaleReceipt]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="SaleReceipt_Employee" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[SaleReceipt_Employees]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="SalariedClassification_Employees">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="SalariedClassification_Employees" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[SalariedClassification_Employees]/Members[SalariedClassification]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[SalariedClassification_Employees]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="MailMethod_Employees">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="MailMethod_Employees" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[MailMethod_Employees]/Members[MailMethod]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[MailMethod_Employees]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="HourlyClassification_Employees">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="HourlyClassification_Employees" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[HourlyClassification_Employees]/Members[HourlyClassification]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[HourlyClassification_Employees]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="DirectMethod_Employees">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="DirectMethod_Employees" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DirectMethod_Employees]/Members[DirectMethod]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DirectMethod_Employees]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="CommisionedClasification_Employees">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="CommisionedClasification_Employees" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[CommisionedClasification_Employees]/Members[CommisionedClasification]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[CommisionedClasification_Employees]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="PayrollItem_Employees">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="PayrollItem_Employees" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[PayrollItem_Employees]/Members[PayrollItem]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="PayrollItem_Employee1" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[PayrollItem_Employees]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="EmployeePhoto_Employees">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="EmployeePhoto_Employees" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[EmployeePhoto_Employees]/Members[EmployeePhoto]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[EmployeePhoto_Employees]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+  <Association
+    Name="Employee_Affiliation">
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="Affiliation"
+      Multiplicity="Many"
+      EntityType="Affiliation" />
+  </Association>
+  <Association
+    Name="TimeCard_Employee">
+    <AssociationEnd
+      Name="TimeCard"
+      Multiplicity="Many"
+      EntityType="TimeCard" />
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="SaleReceipt_Employee">
+    <AssociationEnd
+      Name="SaleReceipt"
+      Multiplicity="Many"
+      EntityType="SaleReceipt" />
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="SalariedClassification_Employee">
+    <AssociationEnd
+      Name="SalariedClassification"
+      EntityType="SalariedClassification" />
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="MailMethod_Employee">
+    <AssociationEnd
+      Name="MailMethod"
+      EntityType="MailMethod" />
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="HourlyClassification_Employee">
+    <AssociationEnd
+      Name="HourlyClassification"
+      EntityType="HourlyClassification" />
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="DirectMethod_Employee">
+    <AssociationEnd
+      Name="DirectMethod"
+      EntityType="DirectMethod" />
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="CommisionedClasification_Employee">
+    <AssociationEnd
+      Name="CommisionedClasification"
+      EntityType="CommisionedClasification" />
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="PayrollItem_Employee">
+    <AssociationEnd
+      Name="PayrollItem"
+      Multiplicity="Many"
+      EntityType="PayrollItem" />
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="EmployeePhoto_Employee">
+    <AssociationEnd
+      Name="EmployeePhoto"
+      EntityType="EmployeePhoto" />
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+</ServiceApplication>

@@ -1,0 +1,749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="Command">
+    <EntityType.Attributes>
+      <CreatedModifiedPropertiesEnabled />
+    </EntityType.Attributes>
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Name"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="DTO_AddSaleReceipt"
+        Association="DTO_AddSaleReceipt_Command"
+        FromEnd="Command"
+        ToEnd="DTO_AddSaleReceipt" />
+      <NavigationProperty
+        Name="DTO_AddServiceCharge"
+        Association="DTO_AddServiceCharge_Command"
+        FromEnd="Command"
+        ToEnd="DTO_AddServiceCharge" />
+      <NavigationProperty
+        Name="DTO_AddTimeCard"
+        Association="DTO_AddTimeCard_Command"
+        FromEnd="Command"
+        ToEnd="DTO_AddTimeCard" />
+      <NavigationProperty
+        Name="DTO_AddAffiliation"
+        Association="DTO_AddAffiliation_Command"
+        FromEnd="Command"
+        ToEnd="DTO_AddAffiliation" />
+      <NavigationProperty
+        Name="DTO_AddUpdateEmployee"
+        Association="DTO_AddUpdateEmployee_Command"
+        FromEnd="Command"
+        ToEnd="DTO_AddUpdateEmployee" />
+      <NavigationProperty
+        Name="DTO_Delete"
+        Association="DTO_Delete_Command"
+        FromEnd="Command"
+        ToEnd="DTO_Delete" />
+      <NavigationProperty
+        Name="DTO_GeneratePayroll"
+        Association="DTO_GeneratePayroll_Command"
+        FromEnd="Command"
+        ToEnd="DTO_GeneratePayroll" />
+      <NavigationProperty
+        Name="DTO_PerformPayment"
+        Association="DTO_PerformPayment_Command"
+        FromEnd="Command"
+        ToEnd="DTO_PerformPayment" />
+      <NavigationProperty
+        Name="DTO_UpdatePayrollStatus"
+        Association="DTO_UpdatePayrollStatus_Command"
+        FromEnd="Command"
+        ToEnd="DTO_UpdatePayrollStatus" />
+      <NavigationProperty
+        Name="DTO_UpdateAffiliation"
+        Association="DTO_UpdateAffiliation_Command"
+        FromEnd="Command"
+        ToEnd="DTO_UpdateAffiliation" />
+      <NavigationProperty
+        Name="DTO_AddUpdateOrganization"
+        Association="DTO_AddUpdateOrganization_Command"
+        FromEnd="Command"
+        ToEnd="DTO_AddUpdateOrganization" />
+      <EntityProperty
+        Name="CreatedBy"
+        IsReadOnly="True"
+        PropertyType=":Person?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Created"
+        IsReadOnly="True"
+        PropertyType=":DateTimeOffset?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ModifiedBy"
+        IsReadOnly="True"
+        PropertyType=":Person?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Modified"
+        IsReadOnly="True"
+        PropertyType=":DateTimeOffset?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <Hidden />
+          <UseForConcurrency />
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <EntityContainer
+    Name="ApplicationData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="Commands"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Command" />
+    <QueryOperation
+      Name="Commands_Single"
+      ReturnType="Command">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Commands" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Commands_SingleOrDefault"
+      ReturnType="Command">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Commands" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Name="DTO_AddSaleReceipt_Commands"
+      Association="DTO_AddSaleReceipt_Command">
+      <AssociationSetEnd
+        Name="DTO_AddSaleReceipt"
+        EntitySet="DTO_AddSaleReceipts" />
+      <AssociationSetEnd
+        Name="Command"
+        EntitySet="Commands" />
+    </AssociationSet>
+    <AssociationSet
+      Name="DTO_AddServiceCharge_Commands"
+      Association="DTO_AddServiceCharge_Command">
+      <AssociationSetEnd
+        Name="DTO_AddServiceCharge"
+        EntitySet="DTO_AddServiceCharges" />
+      <AssociationSetEnd
+        Name="Command"
+        EntitySet="Commands" />
+    </AssociationSet>
+    <AssociationSet
+      Name="DTO_AddTimeCard_Commands"
+      Association="DTO_AddTimeCard_Command">
+      <AssociationSetEnd
+        Name="DTO_AddTimeCard"
+        EntitySet="DTO_AddTimeCards" />
+      <AssociationSetEnd
+        Name="Command"
+        EntitySet="Commands" />
+    </AssociationSet>
+    <AssociationSet
+      Name="DTO_AddAffiliation_Commands"
+      Association="DTO_AddAffiliation_Command">
+      <AssociationSetEnd
+        Name="DTO_AddAffiliation"
+        EntitySet="DTO_AddAffiliations" />
+      <AssociationSetEnd
+        Name="Command"
+        EntitySet="Commands" />
+    </AssociationSet>
+    <AssociationSet
+      Name="DTO_AddUpdateEmployee_Commands"
+      Association="DTO_AddUpdateEmployee_Command">
+      <AssociationSetEnd
+        Name="DTO_AddUpdateEmployee"
+        EntitySet="DTO_AddUpdateEmployees" />
+      <AssociationSetEnd
+        Name="Command"
+        EntitySet="Commands" />
+    </AssociationSet>
+    <AssociationSet
+      Name="DTO_Delete_Commands"
+      Association="DTO_Delete_Command">
+      <AssociationSetEnd
+        Name="DTO_Delete"
+        EntitySet="DTO_Deletes" />
+      <AssociationSetEnd
+        Name="Command"
+        EntitySet="Commands" />
+    </AssociationSet>
+    <AssociationSet
+      Name="DTO_GeneratePayroll_Commands"
+      Association="DTO_GeneratePayroll_Command">
+      <AssociationSetEnd
+        Name="DTO_GeneratePayroll"
+        EntitySet="DTO_GeneratePayrolls" />
+      <AssociationSetEnd
+        Name="Command"
+        EntitySet="Commands" />
+    </AssociationSet>
+    <AssociationSet
+      Name="DTO_PerformPayment_Commands"
+      Association="DTO_PerformPayment_Command">
+      <AssociationSetEnd
+        Name="DTO_PerformPayment"
+        EntitySet="DTO_PerformPayments" />
+      <AssociationSetEnd
+        Name="Command"
+        EntitySet="Commands" />
+    </AssociationSet>
+    <AssociationSet
+      Name="DTO_UpdatePayrollStatus_Commands"
+      Association="DTO_UpdatePayrollStatus_Command">
+      <AssociationSetEnd
+        Name="DTO_UpdatePayrollStatus"
+        EntitySet="DTO_UpdatePayrollStatuses" />
+      <AssociationSetEnd
+        Name="Command"
+        EntitySet="Commands" />
+    </AssociationSet>
+    <AssociationSet
+      Name="DTO_UpdateAffiliation_Commands"
+      Association="DTO_UpdateAffiliation_Command">
+      <AssociationSetEnd
+        Name="DTO_UpdateAffiliation"
+        EntitySet="DTO_UpdateAffiliations" />
+      <AssociationSetEnd
+        Name="Command"
+        EntitySet="Commands" />
+    </AssociationSet>
+    <AssociationSet
+      Name="DTO_AddUpdateOrganization_Commands"
+      Association="DTO_AddUpdateOrganization_Command">
+      <AssociationSetEnd
+        Name="DTO_AddUpdateOrganization"
+        EntitySet="DTO_AddUpdateOrganizations" />
+      <AssociationSetEnd
+        Name="Command"
+        EntitySet="Commands" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association
+    Name="DTO_AddSaleReceipt_Command">
+    <AssociationEnd
+      Name="DTO_AddSaleReceipt"
+      EntityType="DTO_AddSaleReceipt" />
+    <AssociationEnd
+      Name="Command"
+      Multiplicity="One"
+      EntityType="Command">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <DataService
+    Name="ApplicationDataMapping">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <AssociationSetMapping
+      AssociationSet="DTO_AddSaleReceipt_Commands">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cmd_AddSaleReceipt_Commands" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddSaleReceipt_Commands]/Members[DTO_AddSaleReceipt]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddSaleReceipt_Commands]/Members[Command]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="DTO_AddServiceCharge_Commands">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cmd_AddServiceCharge_Commands" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddServiceCharge_Commands]/Members[DTO_AddServiceCharge]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddServiceCharge_Commands]/Members[Command]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="DTO_AddTimeCard_Commands">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cmd_AddTimeCard_Commands" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddTimeCard_Commands]/Members[DTO_AddTimeCard]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddTimeCard_Commands]/Members[Command]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="DTO_AddAffiliation_Commands">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cmd_AddUpdateAffiliation_Commands" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddAffiliation_Commands]/Members[DTO_AddAffiliation]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddAffiliation_Commands]/Members[Command]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="DTO_AddUpdateEmployee_Commands">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cmd_AddUpdateEmployee_Commands" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddUpdateEmployee_Commands]/Members[DTO_AddUpdateEmployee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddUpdateEmployee_Commands]/Members[Command]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="DTO_Delete_Commands">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cmd_Delete_Commands" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_Delete_Commands]/Members[DTO_Delete]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_Delete_Commands]/Members[Command]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="DTO_GeneratePayroll_Commands">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cmd_GeneratePayroll_Commands" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_GeneratePayroll_Commands]/Members[DTO_GeneratePayroll]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_GeneratePayroll_Commands]/Members[Command]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="DTO_PerformPayment_Commands">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cmd_PerformPayment_Commands" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_PerformPayment_Commands]/Members[DTO_PerformPayment]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_PerformPayment_Commands]/Members[Command]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="DTO_UpdatePayrollStatus_Commands">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cmd_UpdatePayrollStatus_Commands" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_UpdatePayrollStatus_Commands]/Members[DTO_UpdatePayrollStatus]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_UpdatePayrollStatus_Commands]/Members[Command]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="DTO_UpdateAffiliation_Commands">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cmd_UpdateAffiliation_Commands" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_UpdateAffiliation_Commands]/Members[DTO_UpdateAffiliation]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_UpdateAffiliation_Commands]/Members[Command]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="DTO_AddUpdateOrganization_Commands">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Cmd_AddUpdateOrganization_Commands" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddUpdateOrganization_Commands]/Members[DTO_AddUpdateOrganization]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DTO_AddUpdateOrganization_Commands]/Members[Command]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+  <Association
+    Name="DTO_AddServiceCharge_Command">
+    <AssociationEnd
+      Name="DTO_AddServiceCharge"
+      EntityType="DTO_AddServiceCharge" />
+    <AssociationEnd
+      Name="Command"
+      Multiplicity="One"
+      EntityType="Command">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="DTO_AddTimeCard_Command">
+    <AssociationEnd
+      Name="DTO_AddTimeCard"
+      EntityType="DTO_AddTimeCard" />
+    <AssociationEnd
+      Name="Command"
+      Multiplicity="One"
+      EntityType="Command">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="DTO_AddAffiliation_Command">
+    <AssociationEnd
+      Name="DTO_AddAffiliation"
+      EntityType="DTO_AddAffiliation" />
+    <AssociationEnd
+      Name="Command"
+      Multiplicity="One"
+      EntityType="Command">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="DTO_AddUpdateEmployee_Command">
+    <AssociationEnd
+      Name="DTO_AddUpdateEmployee"
+      EntityType="DTO_AddUpdateEmployee" />
+    <AssociationEnd
+      Name="Command"
+      Multiplicity="One"
+      EntityType="Command">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="DTO_Delete_Command">
+    <AssociationEnd
+      Name="DTO_Delete"
+      EntityType="DTO_Delete" />
+    <AssociationEnd
+      Name="Command"
+      Multiplicity="One"
+      EntityType="Command">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="DTO_GeneratePayroll_Command">
+    <AssociationEnd
+      Name="DTO_GeneratePayroll"
+      EntityType="DTO_GeneratePayroll" />
+    <AssociationEnd
+      Name="Command"
+      Multiplicity="One"
+      EntityType="Command">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="DTO_PerformPayment_Command">
+    <AssociationEnd
+      Name="DTO_PerformPayment"
+      EntityType="DTO_PerformPayment" />
+    <AssociationEnd
+      Name="Command"
+      Multiplicity="One"
+      EntityType="Command">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="DTO_UpdatePayrollStatus_Command">
+    <AssociationEnd
+      Name="DTO_UpdatePayrollStatus"
+      EntityType="DTO_UpdatePayrollStatus" />
+    <AssociationEnd
+      Name="Command"
+      Multiplicity="One"
+      EntityType="Command">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="DTO_UpdateAffiliation_Command">
+    <AssociationEnd
+      Name="DTO_UpdateAffiliation"
+      EntityType="DTO_UpdateAffiliation" />
+    <AssociationEnd
+      Name="Command"
+      Multiplicity="One"
+      EntityType="Command">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="DTO_AddUpdateOrganization_Command">
+    <AssociationEnd
+      Name="DTO_AddUpdateOrganization"
+      EntityType="DTO_AddUpdateOrganization" />
+    <AssociationEnd
+      Name="Command"
+      Multiplicity="One"
+      EntityType="Command">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+</ServiceApplication>

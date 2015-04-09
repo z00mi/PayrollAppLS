@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PayrollApp.Domain.Model.Employee">
+    <Position X="1" Y="1" Width="2" />
+    <Members>
+      <Field Name="_addresses" Hidden="true" />
+      <Method Name="Create" Hidden="true" />
+      <Method Name="Employee" Hidden="true" />
+    </Members>
+    <AssociationLine Name="PaymentClassification" Type="PayrollApp.Domain.Model.PaymentClassification" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="3.719" />
+        <Point X="12.875" Y="3.719" />
+        <Point X="12.875" Y="5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="PaymentMethod" Type="PayrollApp.Domain.Model.PaymentMethod" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="3.875" />
+        <Point X="6.125" Y="3.875" />
+        <Point X="6.125" Y="5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAZBAEAAACCAAQAAAAAAAAAAAAUAAEAAAAQgIAAAAAg=</HashCode>
+      <FileName>Model\Employee\Employee.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PaymentScheduleType" />
+      <Property Name="PaymentClassification" />
+      <Property Name="PaymentMethod" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Addresses" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.PaymentMethod" Collapsed="true">
+    <Position X="5.25" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Employee\PaymentMethod\_Base\PaymentMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.DirectMethod">
+    <Position X="3.5" Y="6.75" Width="1.5" />
+    <Members>
+      <Method Name="DirectMethod" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAEA=</HashCode>
+      <FileName>Model\Employee\PaymentMethod\DirectMethod\DirectMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.HoldMethod">
+    <Position X="5.25" Y="6.75" Width="1.5" />
+    <Members>
+      <Method Name="HoldMethod" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Employee\PaymentMethod\HoldMethod\HoldMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.MailMethod">
+    <Position X="7" Y="6.75" Width="1.75" />
+    <Members>
+      <Method Name="MailMethod" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAABAAAAA=</HashCode>
+      <FileName>Model\Employee\PaymentMethod\MailMethod\MailMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.PaymentClassification" Collapsed="true">
+    <Position X="12" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Employee\PaymentClassification\_Base\PaymentClassification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.CommisionedClassification">
+    <Position X="9.5" Y="6.75" Width="2.25" />
+    <Members>
+      <Method Name="CommisionedClassification" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAQCAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Employee\PaymentClassification\CommisionedClassification\CommisionedClassification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.HourlyClassification">
+    <Position X="12" Y="6.75" Width="1.75" />
+    <Members>
+      <Method Name="HourlyClassification" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Employee\PaymentClassification\HourlyClassification\HourlyClassification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.SalariedClassification">
+    <Position X="14" Y="6.75" Width="1.75" />
+    <Members>
+      <Method Name="SalariedClassification" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Employee\PaymentClassification\SalariedClassification\SalariedClassification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.Address">
+    <Position X="5" Y="1" Width="1.5" />
+    <Members>
+      <Method Name="Address" Hidden="true" />
+      <Method Name="Create" Hidden="true" />
+      <Method Name="GetThisHashCode" Hidden="true" />
+      <Method Name="ThisEquals" Hidden="true" />
+      <Method Name="ThisToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAIAEAAAAAAAgAAAEAAgAIAAAAAAAA=</HashCode>
+      <FileName>Model\_Common\Address\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="PayrollApp.Domain.Model.EmployeePaymentScheduleType">
+    <Position X="0.5" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAABAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Employee\EmployeePaymentScheduleType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

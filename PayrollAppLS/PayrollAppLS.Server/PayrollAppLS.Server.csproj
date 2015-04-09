@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectTypeGuids>{8BB0C5E8-0616-4F60-8E55-A43933E57E9C};{349c5851-65df-11da-9384-00065b846f21};{FAE04EC0-301F-11d3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{2C767170-7D93-4A2C-B8ED-15F99C511939}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LightSwitchApplication</RootNamespace>
+    <AssemblyName>Application.Server</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <LightSwitchVersion>v4.5</LightSwitchVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <SupportedCultures>en-US</SupportedCultures>
+    <FileAlignment>512</FileAlignment>
+    <IgnoreDeployManagedRuntimeVersion>True</IgnoreDeployManagedRuntimeVersion>
+    <UseDeclareParametersXMLInMsDeploy>False</UseDeclareParametersXMLInMsDeploy>
+    <LightSwitchDisplayName>Server</LightSwitchDisplayName>
+    <LightSwitchProjectTypeV45>Server</LightSwitchProjectTypeV45>
+    <MicrosoftSdkDir Condition=" '$(MicrosoftSdkDir)' == '' ">$([System.IO.Path]::Combine($(MSBuildProgramFiles32), 'Microsoft SDKs'))</MicrosoftSdkDir>
+    <LightSwitchSDKPath Condition=" '$(LightSwitchSDKPath)' == '' ">$([System.IO.Path]::Combine($(MicrosoftSdkDir), 'LightSwitch', $(LightSwitchVersion)))</LightSwitchSDKPath>
+    <LightSwitchSDKPath Condition=" '$(LightSwitchSDKPath)' != '' and !HasTrailingSlash('$(LightSwitchSDKPath)')">$(LightSwitchSDKPath)\</LightSwitchSDKPath>
+    <NuGetPackagesFolder Condition=" Exists('..\Packages')">..\Packages\</NuGetPackagesFolder>
+    <NuGetPackagesFolder Condition=" Exists('..\..\Packages')">..\..\Packages\</NuGetPackagesFolder>
+    <WCFRIASERVICESSDKPath Condition=" '$(WCFRIASERVICESSDKPath)' == '' ">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WCFRIAServices\v1.0@InstallPath)</WCFRIASERVICESSDKPath>
+    <WCFRIASERVICESSDKPath Condition=" '$(WCFRIASERVICESSDKPath)' == '' ">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\WCFRIAServices\v1.0@InstallPath)</WCFRIASERVICESSDKPath>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseDesignTimeFeatures>true</UseDesignTimeFeatures>
+    <NoWarn>1522</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseDesignTimeFeatures>false</UseDesignTimeFeatures>
+    <NoWarn>1522</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.LightSwitch.Extensions.Server">
+      <HintPath>..\_Pvt_Extensions\Microsoft.LightSwitch.Extensions\Server\Reference\Microsoft.LightSwitch.Extensions.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="Rebus">
+      <HintPath>..\..\packages\Rebus.0.82.0\lib\NET45\Rebus.dll</HintPath>
+    </Reference>
+    <Reference Include="Rebus.StructureMap">
+      <HintPath>..\..\packages\Rebus.StructureMap.0.82.0\lib\NET45\Rebus.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=3.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=3.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition">
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.Core">
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.Data">
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.Data.Entity">
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.Xml">
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.Web">
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.LightSwitch">
+      <HintPath>$(LightSwitchSDKPath)\Client\Microsoft.LightSwitch.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.LightSwitch.AppBridge">
+      <HintPath>$(LightSwitchSDKPath)\Server\Microsoft.LightSwitch.AppBridge.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.LightSwitch.ExportProvider, Version=10.0.12.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>$(LightSwitchSDKPath)\Client\Microsoft.LightSwitch.ExportProvider.dll</HintPath>
+      <SpecificVersion>True</SpecificVersion>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.LightSwitch.CodeMarker, Version=12.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>$(LightSwitchSDKPath)\Client\Microsoft.LightSwitch.CodeMarker.dll</HintPath>
+      <SpecificVersion>True</SpecificVersion>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.LightSwitch.ManifestService">
+      <HintPath>$(LightSwitchSDKPath)\Server\Microsoft.LightSwitch.ManifestService.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.LightSwitch.Model.Xaml">
+      <HintPath>$(LightSwitchSDKPath)\Server\Microsoft.LightSwitch.Model.Xaml.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.LightSwitch.Server">
+      <HintPath>$(LightSwitchSDKPath)\Server\Microsoft.LightSwitch.Server.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.LightSwitch.Server.Host">
+      <HintPath>$(LightSwitchSDKPath)\Server\Microsoft.LightSwitch.Server.Host.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.ServiceModel.PollingDuplex">
+      <HintPath>$(LightSwitchSDKPath)\Server\System.ServiceModel.PollingDuplex.dll</HintPath>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm">
+      <HintPath>$(LightSwitchSDKPath)\Server\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData">
+      <HintPath>$(LightSwitchSDKPath)\Server\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services">
+      <HintPath>$(LightSwitchSDKPath)\Server\Microsoft.Data.Services.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client">
+      <HintPath>$(LightSwitchSDKPath)\Server\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt">
+      <HintPath>$(NuGetPackagesFolder)\System.IdentityModel.Tokens.Jwt.1.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.Spatial">
+      <HintPath>$(LightSwitchSDKPath)\Server\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.ServiceModel.DomainServices.EntityFramework">
+      <HintPath>$(WCFRIASERVICESSDKPath)\v1.0\Libraries\Server\System.ServiceModel.DomainServices.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.ServiceModel.DomainServices.Hosting">
+      <HintPath>$(WCFRIASERVICESSDKPath)\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Hosting.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.ServiceModel.DomainServices.Hosting.OData">
+      <HintPath>$(WCFRIASERVICESSDKPath)\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Hosting.OData.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+    <Reference Include="System.ServiceModel.DomainServices.Server">
+      <HintPath>$(WCFRIASERVICESSDKPath)\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Server.dll</HintPath>
+      <Private>True</Private>
+      <ProjectCritical>True</ProjectCritical>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application.cs" />
+    <Compile Include="Configuration\SingletonInstances.cs" />
+    <Compile Include="DataSources\ApplicationData\Command.lsml.cs">
+      <DependentUpon>Commands.lsml</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\CommandHandlersProvider\CommandHandlersProvider.cs" />
+    <Compile Include="Commands\CommandHandlersProvider\ICommandHandlersProvider.cs" />
+    <Compile Include="Commands\CommandHandlers\Affiliation\Add\AddAffiliationAssembler.cs" />
+    <Compile Include="Commands\CommandHandlers\Affiliation\Add\AddAffiliationCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Affiliation\Delete\DeleteAffiliationCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Affiliation\Update\UpdateAffiliationAssembler.cs" />
+    <Compile Include="Commands\CommandHandlers\Affiliation\Update\UpdateAffiliationCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Employee\Add\AddEmployeeAssembler.cs" />
+    <Compile Include="Commands\CommandHandlers\Employee\Add\AddEmployeeCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Employee\Delete\DeleteEmployeeCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Employee\Update\UpdateEmployeeAssembler.cs" />
+    <Compile Include="Commands\CommandHandlers\Employee\Update\UpdateEmployeeCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\_Base\ICommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Organization\Add\AddOrganizationAssembler.cs" />
+    <Compile Include="Commands\CommandHandlers\Organization\Add\AddOrganizationCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Organization\Delete\DeleteOrganizationCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Organization\Update\UpdateOrganizationAssembler.cs" />
+    <Compile Include="Commands\CommandHandlers\Organization\Update\UpdateOrganizationCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Payroll\Delete\DeletePayrollCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Payroll\Generate\GeneratePayrollCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Payroll\PerformPayment\PerformPaymentCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\Payroll\UpdateStatus\UpdatePayrollStatusAssembler.cs" />
+    <Compile Include="Commands\CommandHandlers\Payroll\UpdateStatus\UpdatePayrollStatusCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\SaleReceipt\Add\AddSaleReceiptAssembler.cs" />
+    <Compile Include="Commands\CommandHandlers\SaleReceipt\Add\AddSaleReceiptCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\SaleReceipt\Delete\DeleteSaleReceiptCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\ServiceCharge\Add\AddServiceChargeAssembler.cs" />
+    <Compile Include="Commands\CommandHandlers\ServiceCharge\Add\AddServiceChargeCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\ServiceCharge\Delete\DeleteServiceChargeCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\TimeCard\Add\AddTimeCardAssembler.cs" />
+    <Compile Include="Commands\CommandHandlers\TimeCard\Add\AddTimeCardCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\TimeCard\Delete\DeleteTimeCardCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandlers\_Base\CommandHandler.cs" />
+    <Compile Include="DataSources\ApplicationData\_ApplicationDataService.lsml.cs" />
+    <Compile Include="IoC\DependencyProvider.cs" />
+    <Compile Include="Configuration\DependencyRegistry.cs" />
+    <Compile Include="IoC\IDependencyProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AffiliationsRepository.cs" />
+    <Compile Include="Repositories\EmployeesRepository.cs" />
+    <Compile Include="Repositories\OrganizationsRepository.cs" />
+    <Compile Include="Repositories\PayrollsRepository.cs" />
+    <Compile Include="Repositories\SaleReceiptsRepository.cs" />
+    <Compile Include="Repositories\ServiceChargesRepository.cs" />
+    <Compile Include="Repositories\_ModelProxy\Affiliation\AffiliationProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Affiliation\AffiliationMemberIdProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Affiliation\AffiliationUidProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\PaymentClassification\CommisionedClassificationCommisionProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\PaymentClassification\CommisionedClassificationProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\PaymentClassification\HourlyClassificationProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\PaymentClassification\SalariedClassificationProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\EmployeeFirstNameProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\EmployeeLastNameProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\EmployeeProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\EmployeeUidProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\PaymentMethod\DirectMethodAccountProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\PaymentMethod\DirectMethodBankProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\PaymentMethod\DirectMethodProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\PaymentMethod\HoldMethodProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\PaymentMethod\MailMethodProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Organization\OrganizationNameProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Organization\OrganizationProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Organization\OrganizationUidProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Payroll\PayrollItemProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Payroll\PayrollProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Payroll\PayrollUidProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\SaleReceipt\SaleReceiptProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\SaleReceipt\SaleReceiptUidProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\ServiceCharge\ServiceChargeProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\ServiceCharge\ServiceChargeUidProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\Address\AddressNumberProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\Address\AddressStreetProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\Address\AddressCityProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\Address\AddressProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\DateAndTimeProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\IntegerValueObjectProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\PhoneNumberProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\WebAddressProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\EmailAddressProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\MoneyProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\DateProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\_Common\HoursProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\TimeCard\TimeCardProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\TimeCard\TimeCardUidProxy.cs" />
+    <Compile Include="Repositories\TimeCardsRepository.cs" />
+    <Compile Include="Repositories\_Base\Repository.cs" />
+    <Compile Include="Shared\CommandNames.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <LightSwitchModel Include="Properties\Service.lsml">
+      <ProjectCritical>true</ProjectCritical>
+    </LightSwitchModel>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+    <LightSwitchModel Include="Properties\DataSources\ApplicationData.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Employees.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Commands.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\TimeCards.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\ServiceCharges.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Addresses.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\SaleReceipts.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Payrolls.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\PayrollItems.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Affiliations.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Organizations.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\CommisionedClasifications.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\HourlyClassifications.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\SalariedClassifications.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DirectMethods.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\MailMethods.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_AddAffiliations.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_AddUpdateEmployees.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_GeneratePayrolls.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_PerformPayments.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_UpdatePayrollStatuses.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_AddSaleReceipts.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_AddServiceCharges.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_AddTimeCards.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_Deletes.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_UpdateAffiliations.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_Addresses.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DTO_AddUpdateOrganizations.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\EmployeePhotos.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\OrganizationByUid.lsml">
+      <DependentUpon>Organizations.lsml</DependentUpon>
+    </LightSwitchModel>
+    <LightSwitchModel Include="DataSources\ApplicationData\AffiliationByUid.lsml">
+      <DependentUpon>Affiliations.lsml</DependentUpon>
+    </LightSwitchModel>
+    <LightSwitchModel Include="DataSources\ApplicationData\EmployeeByUid.lsml">
+      <DependentUpon>Employees.lsml</DependentUpon>
+    </LightSwitchModel>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="packages.config" />
+    <_ServerFile Include="default.aspx" />
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\PayrollApp.AppServices\PayrollApp.AppServices.csproj">
+      <Project>{e15f40ce-0cb2-41f3-8d3c-710714550cc9}</Project>
+      <Name>PayrollApp.AppServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PayrollApp.DomainServices\PayrollApp.DomainServices.csproj">
+      <Project>{8d1e1743-c749-495b-b356-c998b8d126d1}</Project>
+      <Name>PayrollApp.DomainServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PayrollApp.Domain\PayrollApp.Domain.csproj">
+      <Project>{1c8f2446-8a9b-434b-9936-06c4d0c405d5}</Project>
+      <Name>PayrollApp.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PayrollApp.EventHandlers\PayrollApp.EventHandlers.csproj">
+      <Project>{59faf939-f019-4bdb-852a-cb73bccf7690}</Project>
+      <Name>PayrollApp.EventHandlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PayrollApp.MessageBus\PayrollApp.MessageBus.csproj">
+      <Project>{8e608f0d-c698-43e2-9be9-196f040fc760}</Project>
+      <Name>PayrollApp.MessageBus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\LightSwitch\$(LightSwitchVersion)\Microsoft.LightSwitch.Build.Tasks.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49523/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{8BB0C5E8-0616-4F60-8E55-A43933E57E9C}" Configuration="Debug|Any CPU">
+        <SpecializedConfiguration />
+      </FlavorProperties>
+      <FlavorProperties GUID="{8BB0C5E8-0616-4F60-8E55-A43933E57E9C}" Configuration="Release|Any CPU">
+        <SpecializedConfiguration />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

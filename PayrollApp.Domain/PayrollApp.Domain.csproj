@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C8F2446-8A9B-434B-9936-06C4D0C405D5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayrollApp.Domain</RootNamespace>
+    <AssemblyName>PayrollApp.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PayrollApp.Domain">
+      <HintPath>..\PayrollAppLS\PayrollAppLS.Server\Bin\PayrollApp.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Events\Affiliation\MemberDuesChangedEvent.cs" />
+    <Compile Include="Events\Affiliation\MemberRemovedFromOrganizationEvent.cs" />
+    <Compile Include="Events\Affiliation\MemberAddedToOrganizationEvent.cs" />
+    <Compile Include="Events\_Base\IDomainEvent.cs" />
+    <Compile Include="Events\Payroll\PayrollGeneratedEvent.cs" />
+    <Compile Include="Exceptions\AggregateNotExists.cs" />
+    <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="Exceptions\_Base\DomainException.cs" />
+    <Compile Include="Factories\Policies\DeductionsCalculation\DeductionsCalculationPolicyFactory.cs" />
+    <Compile Include="Factories\Policies\DeductionsCalculation\IDeductionsCalculationPolicyFactory.cs" />
+    <Compile Include="Factories\Policies\PaymentCalculation\IPaymentCalculationPolicyFactory.cs" />
+    <Compile Include="Factories\Policies\PaymentCalculation\PaymentCalculationPolicyFactory.cs" />
+    <Compile Include="Factories\Policies\PaymentScheduleCalculation\IPaymentScheduleCalculationPolicyFactory.cs" />
+    <Compile Include="Factories\Policies\PaymentScheduleCalculation\PaymentScheduleCalculationPolicyFactory.cs" />
+    <Compile Include="Factories\Policies\PerformPayment\IPerformPaymentPolicyFactory.cs" />
+    <Compile Include="Factories\Policies\PerformPayment\PerformPaymentPolicyFactory.cs" />
+    <Compile Include="Factories\Specifications\Affiliation\AffiliationValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\Affiliation\IAffiliationValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\Employee\EmployeeValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\Employee\IEmployeeValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\Organization\OrganizationValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\Organization\IOrganizationValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\Payroll\PayrollValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\Payroll\IPayrollValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\SaleReceipt\SaleReceiptValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\SaleReceipt\ISaleReceiptValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\ServiceCharge\ServiceChargeValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\ServiceCharge\IServiceChargeValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\TimeCard\TimeCardValidationSpecificationFactory.cs" />
+    <Compile Include="Factories\Specifications\TimeCard\ITimeCardValidationSpecificationFactory.cs" />
+    <Compile Include="Model\Affiliation\Affiliation.cs" />
+    <Compile Include="Model\Affiliation\AffiliationMemberId.cs" />
+    <Compile Include="Model\Affiliation\AffiliationUid.cs" />
+    <Compile Include="Model\Employee\Employee.cs" />
+    <Compile Include="Model\Employee\EmployeePaymentScheduleType.cs" />
+    <Compile Include="Model\Employee\EmployeeUid.cs" />
+    <Compile Include="Model\Employee\EmployeeFirstName.cs" />
+    <Compile Include="Model\Employee\EmployeeLastName.cs" />
+    <Compile Include="Model\Employee\PaymentClassification\CommisionedClassification\CommisionedClassificationCommision.cs" />
+    <Compile Include="Model\Employee\PaymentClassification\_Base\PaymentClassificationType.cs" />
+    <Compile Include="Model\Employee\PaymentMethod\DirectMethod\DirectMethodAccount.cs" />
+    <Compile Include="Model\Employee\PaymentMethod\DirectMethod\DirectMethodBank.cs" />
+    <Compile Include="Model\Employee\PaymentMethod\_Base\PaymentMethodType.cs" />
+    <Compile Include="Model\Organization\Organization.cs" />
+    <Compile Include="Model\Organization\OrganizationName.cs" />
+    <Compile Include="Model\Organization\OrganizationUid.cs" />
+    <Compile Include="Model\Payroll\PayrollItem.cs" />
+    <Compile Include="Model\SaleReceipt\SaleReceiptUid.cs" />
+    <Compile Include="Model\ServiceCharge\ServiceChargeUid.cs" />
+    <Compile Include="Model\TimeCard\TimeCardUid.cs" />
+    <Compile Include="Model\_Common\Address\Address.cs" />
+    <Compile Include="Model\_Common\Address\AddressCity.cs" />
+    <Compile Include="Model\_Common\Address\AddressNumber.cs" />
+    <Compile Include="Model\_Common\Address\AddressStreet.cs" />
+    <Compile Include="Model\_Common\_Base\DateAndTime.cs" />
+    <Compile Include="Model\_Common\WebAddress.cs" />
+    <Compile Include="Model\_Common\EmailAddress.cs" />
+    <Compile Include="Model\_Common\Money.cs" />
+    <Compile Include="Model\PayCheck\PayCheck.cs" />
+    <Compile Include="Model\Employee\PaymentClassification\CommisionedClassification\CommisionedClassification.cs" />
+    <Compile Include="Model\Employee\PaymentClassification\HourlyClassification\HourlyClassification.cs" />
+    <Compile Include="Model\Employee\PaymentClassification\_Base\PaymentClassification.cs" />
+    <Compile Include="Model\Employee\PaymentClassification\SalariedClassification\SalariedClassification.cs" />
+    <Compile Include="Model\Employee\PaymentMethod\DirectMethod\DirectMethod.cs" />
+    <Compile Include="Model\Employee\PaymentMethod\HoldMethod\HoldMethod.cs" />
+    <Compile Include="Model\Employee\PaymentMethod\MailMethod\MailMethod.cs" />
+    <Compile Include="Model\Employee\PaymentMethod\_Base\PaymentMethod.cs" />
+    <Compile Include="Model\Payroll\Payroll.cs" />
+    <Compile Include="Model\Payroll\PayrollUid.cs" />
+    <Compile Include="Model\SaleReceipt\SaleReceipt.cs" />
+    <Compile Include="Model\ServiceCharge\ServiceCharge.cs" />
+    <Compile Include="Model\TimeCard\TimeCard.cs" />
+    <Compile Include="Model\_Base\AggregateRoot.cs" />
+    <Compile Include="Model\_Base\Entity.cs" />
+    <Compile Include="Model\_Common\Percent.cs" />
+    <Compile Include="Model\_Common\PhoneNumber.cs" />
+    <Compile Include="Model\_Common\_Base\IntegerValueObject.cs" />
+    <Compile Include="Model\_Common\_Base\GuidValueObject.cs" />
+    <Compile Include="Model\_Common\_Base\DecimalValueObject.cs" />
+    <Compile Include="Model\_Common\_Base\NullableValObj.cs" />
+    <Compile Include="Model\_Common\_Base\StringValueObject.cs" />
+    <Compile Include="Model\_Base\ValueObject.cs" />
+    <Compile Include="Model\_Common\Hours.cs" />
+    <Compile Include="Model\_Common\_Base\Date.cs" />
+    <Compile Include="Policies\DeductionsCalculation\DeductionsCalculationPolicy.cs" />
+    <Compile Include="Policies\DeductionsCalculation\_Base\IDeductionsCalculationPolicy.cs" />
+    <Compile Include="Policies\PaymentCalculation\CommisionedPayCalculationPolicy.cs" />
+    <Compile Include="Policies\PaymentCalculation\HourlyPayCalculationPolicy.cs" />
+    <Compile Include="Policies\PaymentCalculation\SalariedPayCalculationPolicy.cs" />
+    <Compile Include="Policies\PaymentCalculation\_Base\IPaymentCalculationPolicy.cs" />
+    <Compile Include="Policies\PaymentCalculation\_Base\PaymentCalculationPolicy.cs" />
+    <Compile Include="Policies\PerformPayment\PerformPayDirectPolicy.cs" />
+    <Compile Include="Policies\PerformPayment\PerformPayHoldPolicy.cs" />
+    <Compile Include="Policies\PerformPayment\PerformPayByMailPolicy.cs" />
+    <Compile Include="Policies\PerformPayment\_Base\IPerformPaymentPolicy.cs" />
+    <Compile Include="Policies\PaymentScheduleCalculation\BiweeklySchedulePolicy.cs" />
+    <Compile Include="Policies\PaymentScheduleCalculation\_Base\IPaymentScheduleCalculationPolicy.cs" />
+    <Compile Include="Policies\PaymentScheduleCalculation\MonthlySchedulePolicy.cs" />
+    <Compile Include="Policies\PaymentScheduleCalculation\WeeklySchedulePolicy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IOrganizationsRepository.cs" />
+    <Compile Include="Repositories\IAffiliationsRepository.cs" />
+    <Compile Include="Repositories\IEmployeesRepository.cs" />
+    <Compile Include="Repositories\IPayrollsRepository.cs" />
+    <Compile Include="Repositories\ISaleReceiptsRepository.cs" />
+    <Compile Include="Repositories\IServiceChargesRepository.cs" />
+    <Compile Include="Repositories\ITimeCardsRepository.cs" />
+    <Compile Include="Repositories\_Base\IRepository.cs" />
+    <Compile Include="Sepcifications\Affiliation\CUD\AffiliationCreatingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\Affiliation\CUD\AffiliationDeletingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\Affiliation\CUD\AffiliationUpdatingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\Employee\CUD\EmployeeDeletingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\Employee\EmployeeAddressesAreUniqueSpecyfication.cs" />
+    <Compile Include="Sepcifications\Employee\CUD\EmployeeUpdatingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\Employee\CUD\EmployeeCreatingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\Employee\EmployeeEmailNotExistsSpecification.cs" />
+    <Compile Include="Sepcifications\Employee\EmployeeFirstAndLastNameNotExistsSpecyfication.cs" />
+    <Compile Include="Sepcifications\Organization\CUD\OrganizationDeletingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\Organization\CUD\OrganizationUpdatingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\Organization\CUD\OrganizationCreatingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\Organization\OrganizationNameNotExistsSpecyfication.cs" />
+    <Compile Include="Sepcifications\Payroll\CUD\PayrollDeletingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\Payroll\CUD\PayrollGeneratingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\SaleReceipt\CUD\SaleReceiptCreatingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\SaleReceipt\CUD\SaleReceiptDeletingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\ServiceCharge\CUD\ServiceChargeDeletingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\ServiceCharge\CUD\ServiceChargeCreatingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\TimeCard\CUD\TimeCardDeletingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\TimeCard\CUD\TimeCardCreatingValidationSpecyfication.cs" />
+    <Compile Include="Sepcifications\_Base\ValidationSpecification.cs" />
+    <Compile Include="Sepcifications\_Base\IValidationSpecification.cs" />
+    <Compile Include="Sepcifications\_Base\Specifications.cs" />
+    <Compile Include="Services\IDomainEventsPublisher.cs" />
+    <Compile Include="Services\IOrganizationsService.cs" />
+    <Compile Include="Services\IPayrollService.cs" />
+    <Compile Include="Services\PayrollService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Model\_Diagrams\EmployeeAggregate.cd" />
+    <None Include="Model\_Diagrams\PayrollAggregate.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

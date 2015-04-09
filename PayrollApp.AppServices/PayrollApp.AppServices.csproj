@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E15F40CE-0CB2-41F3-8D3C-710714550CC9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayrollApp.AppServices</RootNamespace>
+    <AssemblyName>PayrollApp.AppServices</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppServices\Affiliation\Add\AddAffiliationAppService.cs" />
+    <Compile Include="AppServices\Affiliation\Add\IAddAffiliationAppService.cs" />
+    <Compile Include="AppServices\Affiliation\Delete\DeleteAffiliationAppService.cs" />
+    <Compile Include="AppServices\Affiliation\Delete\IDeleteAffiliationAppService.cs" />
+    <Compile Include="AppServices\Affiliation\Update\UpdateAffiliationAppService.cs" />
+    <Compile Include="AppServices\Affiliation\Update\IUpdateAffiliationAppService.cs" />
+    <Compile Include="AppServices\Employee\Add\EmployeeAppServiceBase.cs" />
+    <Compile Include="AppServices\Employee\Add\AddEmployeeAppService.cs" />
+    <Compile Include="AppServices\Employee\Add\IAddEmployeeAppService.cs" />
+    <Compile Include="AppServices\Employee\Delete\DeleteEmployeeAppService.cs" />
+    <Compile Include="AppServices\Employee\Delete\IDeleteEmployeeAppService.cs" />
+    <Compile Include="AppServices\Employee\Update\UpdateEmployeeAppService.cs" />
+    <Compile Include="AppServices\Employee\Update\IUpdateEmployeeAppService.cs" />
+    <Compile Include="AppServices\Organization\Add\AddOrganizationAppService.cs" />
+    <Compile Include="AppServices\Organization\Add\IAddOrganizationAppService.cs" />
+    <Compile Include="AppServices\Organization\Delete\DeleteOrganizationAppService.cs" />
+    <Compile Include="AppServices\Organization\Delete\IDeleteOrganizationAppService.cs" />
+    <Compile Include="AppServices\Organization\UpdateMembersCount\UpdateOrganizationMembersCountAppService.cs" />
+    <Compile Include="AppServices\Organization\UpdateMembersCount\IUpdateOrganizationMembersCountAppService.cs" />
+    <Compile Include="AppServices\Organization\UpdateMonthlyBudget\IUpdateOrganizationMonthlyBudgetAppService.cs" />
+    <Compile Include="AppServices\Organization\UpdateMonthlyBudget\UpdateOrganizationMonthlyBudgetAppService.cs" />
+    <Compile Include="AppServices\Organization\Update\UpdateOrganizationAppService.cs" />
+    <Compile Include="AppServices\Organization\Update\IUpdateOrganizationAppService.cs" />
+    <Compile Include="AppServices\Payroll\Delete\DeletePayrollAppService.cs" />
+    <Compile Include="AppServices\Payroll\Delete\IDeletePayrollAppService.cs" />
+    <Compile Include="AppServices\Payroll\Generate\GeneratePayrollAppService.cs" />
+    <Compile Include="AppServices\Payroll\Generate\IGeneratePayrollAppService.cs" />
+    <Compile Include="AppServices\Payroll\PerformPayment\PerformPaymentAppService.cs" />
+    <Compile Include="AppServices\Payroll\PerformPayment\IPerformPaymentAppService.cs" />
+    <Compile Include="AppServices\Payroll\UpdateStatus\UpdatePayrollStatusAppService.cs" />
+    <Compile Include="AppServices\Payroll\UpdateStatus\IUpdatePayrollStatusAppService.cs" />
+    <Compile Include="AppServices\SaleReceipt\Add\AddSaleReceiptAppService.cs" />
+    <Compile Include="AppServices\SaleReceipt\Add\IAddSaleReceiptAppService.cs" />
+    <Compile Include="AppServices\SaleReceipt\Delete\DeleteSaleReceiptAppService.cs" />
+    <Compile Include="AppServices\SaleReceipt\Delete\IDeleteSaleReceiptAppService.cs" />
+    <Compile Include="AppServices\ServiceCharge\Add\AddServiceChargeAppService.cs" />
+    <Compile Include="AppServices\ServiceCharge\Add\IAddServiceChargeAppService.cs" />
+    <Compile Include="AppServices\ServiceCharge\Delete\DeleteServiceChargeAppService.cs" />
+    <Compile Include="AppServices\ServiceCharge\Delete\IDeleteServiceChargeAppService.cs" />
+    <Compile Include="AppServices\TimeCard\Add\AddTimeCardAppService.cs" />
+    <Compile Include="AppServices\TimeCard\Add\IAddTimeCardAppService.cs" />
+    <Compile Include="AppServices\TimeCard\Delete\DeleteTimeCardAppService.cs" />
+    <Compile Include="AppServices\TimeCard\Delete\IDeleteTimeCardAppService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PayrollApp.Domain\PayrollApp.Domain.csproj">
+      <Project>{1c8f2446-8a9b-434b-9936-06c4d0c405d5}</Project>
+      <Name>PayrollApp.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AppServices\Administration\InitDatabase\" />
+    <Folder Include="AppServices\Administration\SynchronizeModel\" />
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
