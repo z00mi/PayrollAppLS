@@ -27,6 +27,7 @@
     <ServiceConfigurationFile>ServiceConfiguration.cscfg</ServiceConfigurationFile>
     <SqlExpressInstanceName>(LocalDB)\v11.0</SqlExpressInstanceName>
     <DefaultLanguage>en-US</DefaultLanguage>
+    <AllowAllWindowsUsers>true</AllowAllWindowsUsers>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug</OutputPath>
