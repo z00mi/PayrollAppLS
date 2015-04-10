@@ -233,6 +233,9 @@
       <Link>UserCode\Shared\CommandNames.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\CommandsListDetail.lsml.cs">
+      <DependentUpon>CommandsListDetail.lsml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\OrganizationsListDetail.lsml.cs">
       <DependentUpon>OrganizationsListDetail.lsml</DependentUpon>
     </Compile>
@@ -251,6 +254,8 @@
     <LightSwitchModel Include="Properties\Proxies.lsml" />
     <LightSwitchModel Include="Screens\OrganizationsListDetail.lsml" />
     <LightSwitchModel Include="Screens\CommandsListDetail.lsml" />
+    <LightSwitchModel Include="Screens\EmployeesListDetail.lsml" />
+    <LightSwitchModel Include="Screens\PayrollsListDetail.lsml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

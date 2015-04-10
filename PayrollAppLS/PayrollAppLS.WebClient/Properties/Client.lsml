@@ -148,9 +148,4 @@
         Target="ServiceInterface:CanDeleteOrganizations" />
     </Permission.Attributes>
   </Permission>
-  <Application.NavigationItems>
-    <ApplicationNavigationMethodLink
-      Name="link"
-      Method="!module/Methods[showBrowseOrganizations]" />
-  </Application.NavigationItems>
 </Application>

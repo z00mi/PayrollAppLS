@@ -31,6 +31,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollApp.Domain.Tests", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0C10A9C6-B9A8-4FE9-A125-D5313AAFFFBE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Docs", "_Docs", "{945591F2-B0F9-4260-9534-436F2E9D0DEB}"
+	ProjectSection(SolutionItems) = preProject
+		DDD Links.txt = DDD Links.txt
+		R.Martin Programowanie zwinne.txt = R.Martin Programowanie zwinne.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

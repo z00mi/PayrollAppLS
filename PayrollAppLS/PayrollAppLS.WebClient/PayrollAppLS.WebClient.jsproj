@@ -91,7 +91,8 @@
       <ProjectCritical>true</ProjectCritical>
     </LightSwitchModel>
     <LightSwitchModel Include="Properties\Proxies.lsml" />
-    <LightSwitchModel Include="Screens\BrowseOrganizations.lsml" />
+    <LightSwitchModel Include="Screens\AddEditOrganization.lsml" />
+    <LightSwitchModel Include="Screens\PayrollApp.lsml" />
   </ItemGroup>
   <ItemGroup>
     <_ClientBuildFile Include="GeneratedArtifacts\model.json">

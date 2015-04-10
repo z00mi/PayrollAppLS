@@ -5,12 +5,12 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="CommandsListDetail">
+    Name="PayrollsListDetail">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="ApplicationData" />
       <DisplayName
-        Value="Commands History" />
+        Value="Payrolls" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -25,37 +25,101 @@
             Name="ListColumn"
             Kind="Group">
             <ContentItem
-              Name="CommandList"
+              Name="PayrollList"
               Kind="Collection"
-              DataType="CollectionView$Command"
-              View="Microsoft.LightSwitch.RichClient:DataGrid">
+              DataType="CollectionView$Payroll"
+              View="Microsoft.LightSwitch.RichClient:List">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <MemberExpression
-                      Member="CommandsListDetail/Properties[Commands]" />
+                      Member="PayrollsListDetail/Properties[Payrolls]" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
               <ContentItem
                 Name="RowTemplate"
                 Kind="Details"
-                DataType="Command"
-                View="Microsoft.LightSwitch.RichClient:TableLayout">
+                DataType="Payroll">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression />
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
                 <ContentItem
-                  Name="Name"
+                  Name="Uid"
                   Kind="Value"
-                  DataType=":String">
+                  DataType=":Guid">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="Command/Properties[Name]" />
+                          Member="Payroll/Properties[Uid]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="TimeGenerated"
+                  Kind="Value"
+                  DataType=":DateTime">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Payroll/Properties[TimeGenerated]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="CreatedBy"
+                  Kind="Value"
+                  DataType=":Person?">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Payroll/Properties[CreatedBy]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="Created"
+                  Kind="Value"
+                  DataType=":DateTimeOffset?">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Payroll/Properties[Created]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="ModifiedBy"
+                  Kind="Value"
+                  DataType=":Person?">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Payroll/Properties[ModifiedBy]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="Modified"
+                  Kind="Value"
+                  DataType=":DateTimeOffset?">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Payroll/Properties[Modified]" />
                       </ChainExpression>
                     </ScreenExpressionTree>
                   </ContentItem.DataSource>
@@ -63,13 +127,13 @@
               </ContentItem>
               <ContentItem.CommandItems>
                 <ContentItem
-                  Name="Commands_AddAndEditNew"
+                  Name="Payrolls_AddAndEditNew"
                   Kind="Command">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="CommandsListDetail/Properties[Commands]" />
+                          Member="PayrollsListDetail/Properties[Payrolls]" />
                         <CallExpression
                           Target="AddAndEditNew" />
                       </ChainExpression>
@@ -77,13 +141,13 @@
                   </ContentItem.DataSource>
                 </ContentItem>
                 <ContentItem
-                  Name="Commands_EditSelected"
+                  Name="Payrolls_EditSelected"
                   Kind="Command">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="CommandsListDetail/Properties[Commands]" />
+                          Member="PayrollsListDetail/Properties[Payrolls]" />
                         <CallExpression
                           Target="EditSelected" />
                       </ChainExpression>
@@ -91,13 +155,13 @@
                   </ContentItem.DataSource>
                 </ContentItem>
                 <ContentItem
-                  Name="Commands_DeleteSelected"
+                  Name="Payrolls_DeleteSelected"
                   Kind="Command">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression>
                         <MemberExpression
-                          Member="CommandsListDetail/Properties[Commands]" />
+                          Member="PayrollsListDetail/Properties[Payrolls]" />
                         <CallExpression
                           Target="DeleteSelected" />
                       </ChainExpression>
@@ -145,133 +209,49 @@
             Name="DetailsColumn"
             Kind="Group">
             <ContentItem
-              Name="DTO_AddUpdateOrganization"
+              Name="PayrollDetails"
               Kind="Details"
-              DataType="DTO_AddUpdateOrganization">
+              DataType="Payroll">
+              <ContentItem.Attributes>
+                <DisplayName
+                  Value="Payroll Details" />
+              </ContentItem.Attributes>
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
                   <ChainExpression>
                     <MemberExpression
-                      Member="CommandsListDetail/Properties[Commands]" />
+                      Member="PayrollsListDetail/Properties[Payrolls]" />
                     <MemberExpression
                       Member="SelectedItem" />
-                    <MemberExpression
-                      Member="DTO_AddUpdateOrganization" />
                   </ChainExpression>
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
               <ContentItem
-                Name="OrganizationUid"
-                Kind="Value"
-                DataType=":Guid?">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="DTO_AddUpdateOrganization/Properties[OrganizationUid]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="Name1"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="DTO_AddUpdateOrganization/Properties[Name]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="WebAddress"
-                Kind="Value"
-                DataType="Microsoft.LightSwitch.Extensions:WebAddress?">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="DTO_AddUpdateOrganization/Properties[WebAddress]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem.PropertySources>
-                <ControlPropertySource
-                  Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <ConstantExpression
-                        Value="Top"
-                        ResultType=":String" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ControlPropertySource>
-              </ContentItem.PropertySources>
-            </ContentItem>
-            <ContentItem
-              Name="DTO_Delete"
-              Kind="Details"
-              DataType="DTO_Delete">
-              <ContentItem.DataSource>
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="CommandsListDetail/Properties[Commands]" />
-                    <MemberExpression
-                      Member="SelectedItem" />
-                    <MemberExpression
-                      Member="DTO_Delete" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ContentItem.DataSource>
-              <ContentItem
-                Name="AggregateUid"
+                Name="Uid1"
                 Kind="Value"
                 DataType=":Guid">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="DTO_Delete/Properties[AggregateUid]" />
+                        Member="Payroll/Properties[Uid]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
               </ContentItem>
-              <ContentItem.PropertySources>
-                <ControlPropertySource
-                  Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
+              <ContentItem
+                Name="TimeGenerated1"
+                Kind="Value"
+                DataType=":DateTime">
+                <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
-                      <ConstantExpression
-                        Value="Top"
-                        ResultType=":String" />
+                      <MemberExpression
+                        Member="Payroll/Properties[TimeGenerated]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
-                </ControlPropertySource>
-              </ContentItem.PropertySources>
-            </ContentItem>
-            <ContentItem
-              Name="CommandDetails"
-              Kind="Details"
-              DataType="Command">
-              <ContentItem.Attributes>
-                <DisplayName
-                  Value="Command Details" />
-              </ContentItem.Attributes>
-              <ContentItem.DataSource>
-                <ScreenExpressionTree>
-                  <ChainExpression>
-                    <MemberExpression
-                      Member="CommandsListDetail/Properties[Commands]" />
-                    <MemberExpression
-                      Member="SelectedItem" />
-                  </ChainExpression>
-                </ScreenExpressionTree>
-              </ContentItem.DataSource>
+                </ContentItem.DataSource>
+              </ContentItem>
               <ContentItem
                 Name="CreatedBy1"
                 Kind="Value"
@@ -280,7 +260,7 @@
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="Command/Properties[CreatedBy]" />
+                        Member="Payroll/Properties[CreatedBy]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -293,7 +273,7 @@
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="Command/Properties[Created]" />
+                        Member="Payroll/Properties[Created]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -306,7 +286,7 @@
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="Command/Properties[ModifiedBy]" />
+                        Member="Payroll/Properties[ModifiedBy]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -319,7 +299,7 @@
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="Command/Properties[Modified]" />
+                        Member="Payroll/Properties[Modified]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -331,6 +311,148 @@
                     <ChainExpression>
                       <ConstantExpression
                         Value="Top"
+                        ResultType=":String" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ControlPropertySource>
+              </ContentItem.PropertySources>
+            </ContentItem>
+            <ContentItem
+              Name="PayrollItems"
+              Kind="Collection"
+              DataType="CollectionView$PayrollItem"
+              View="Microsoft.LightSwitch.RichClient:DataGrid">
+              <ContentItem.DataSource>
+                <ScreenExpressionTree>
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="PayrollsListDetail/Properties[PayrollItems]" />
+                  </ChainExpression>
+                </ScreenExpressionTree>
+              </ContentItem.DataSource>
+              <ContentItem
+                Name="RowTemplate1"
+                Kind="Details"
+                DataType="PayrollItem">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression />
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+                <ContentItem
+                  Name="GrossPay"
+                  Kind="Value"
+                  DataType="Microsoft.LightSwitch.Extensions:Money">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="PayrollItem/Properties[GrossPay]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="Deductions"
+                  Kind="Value"
+                  DataType="Microsoft.LightSwitch.Extensions:Money">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="PayrollItem/Properties[Deductions]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="NetPay"
+                  Kind="Value"
+                  DataType="Microsoft.LightSwitch.Extensions:Money">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="PayrollItem/Properties[NetPay]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="Employee"
+                  Kind="Details"
+                  DataType="Employee">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="PayrollItem/Properties[Employee]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                  <ContentItem
+                    Name="RowTemplate2"
+                    Kind="Details"
+                    DataType="Employee">
+                    <ContentItem.DataSource>
+                      <ScreenExpressionTree>
+                        <ChainExpression />
+                      </ScreenExpressionTree>
+                    </ContentItem.DataSource>
+                  </ContentItem>
+                </ContentItem>
+              </ContentItem>
+              <ContentItem.CommandItems>
+                <ContentItem
+                  Name="PayrollItems_AddAndEditNew"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="PayrollsListDetail/Properties[PayrollItems]" />
+                        <CallExpression
+                          Target="AddAndEditNew" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="PayrollItems_EditSelected"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="PayrollsListDetail/Properties[PayrollItems]" />
+                        <CallExpression
+                          Target="EditSelected" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="PayrollItems_DeleteSelected"
+                  Kind="Command">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="PayrollsListDetail/Properties[PayrollItems]" />
+                        <CallExpression
+                          Target="DeleteSelected" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+              </ContentItem.CommandItems>
+              <ContentItem.PropertySources>
+                <ControlPropertySource
+                  Property="Microsoft.LightSwitch.RichClient:RootControl/Properties[VerticalAlignment]">
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <ConstantExpression
+                        Value="Stretch"
                         ResultType=":String" />
                     </ChainExpression>
                   </ScreenExpressionTree>
@@ -369,7 +491,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="CommandsListDetail/Methods[Save]" />
+                    Target="PayrollsListDetail/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -381,7 +503,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="CommandsListDetail/Methods[Refresh]" />
+                    Target="PayrollsListDetail/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -421,20 +543,20 @@
     </Screen.Methods>
     <Screen.Properties>
       <ScreenCollectionProperty
-        Name="Commands"
+        Name="Payrolls"
         PageSize="45"
-        PropertyType="CollectionView$Command">
+        PropertyType="CollectionView$Payroll">
         <ScreenCollectionProperty.Query>
           <ScreenQueryDefinition
-            Name="CommandsQuery"
-            ReturnType="Command*">
+            Name="PayrollsQuery"
+            ReturnType="Payroll*">
             <ScreenQueryDefinition.FilterExpression>
               <QueryFilterExpressionTree />
             </ScreenQueryDefinition.FilterExpression>
             <ScreenQueryDefinition.Source>
               <QuerySourceExpressionTree>
                 <MemberExpression
-                  Member="ApplicationData/Members[Commands]" />
+                  Member="ApplicationData/Members[Payrolls]" />
               </QuerySourceExpressionTree>
             </ScreenQueryDefinition.Source>
           </ScreenQueryDefinition>
@@ -442,7 +564,39 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="CommandsListDetail/Properties[Commands]/Query" />
+              Target="PayrollsListDetail/Properties[Payrolls]/Query" />
+          </ChainExpression>
+        </ScreenExpressionTree>
+      </ScreenCollectionProperty>
+      <ScreenCollectionProperty
+        Name="PayrollItems"
+        PageSize="15"
+        PropertyType="CollectionView$PayrollItem">
+        <ScreenCollectionProperty.Query>
+          <ScreenQueryDefinition
+            Name="PayrollItemsQuery"
+            ReturnType="PayrollItem*">
+            <ScreenQueryDefinition.FilterExpression>
+              <QueryFilterExpressionTree />
+            </ScreenQueryDefinition.FilterExpression>
+            <ScreenQueryDefinition.Source>
+              <QuerySourceExpressionTree>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="PayrollsListDetail/Properties[Payrolls]" />
+                  <MemberExpression
+                    Member="SelectedItem" />
+                  <MemberExpression
+                    Member="PayrollItems" />
+                </ChainExpression>
+              </QuerySourceExpressionTree>
+            </ScreenQueryDefinition.Source>
+          </ScreenQueryDefinition>
+        </ScreenCollectionProperty.Query>
+        <ScreenExpressionTree>
+          <ChainExpression>
+            <CallExpression
+              Target="PayrollsListDetail/Properties[PayrollItems]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -450,10 +604,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowCommandsListDetail">
+      Name="ShowPayrollsListDetail">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="CommandsListDetail" />
+          TargetScreen="PayrollsListDetail" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

@@ -1,0 +1,18 @@
+BOTEGA:
+Podstawowe Building Blocks DDD:
+http://www.bottega.com.pl/pdf/materialy/ddd/ddd1.pdf
+Architektura zdarzeniowa:
+http://www.bottega.com.pl/pdf/materialy/ddd/ddd2.pdf
+
+
+VERNON:
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_2.pdf
+http://dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_3.pdf
+
+Agregaty:
+- ma³e agregaty
+- referencje do innych agregatów poprzez ID, a nie referencje do obiektów
+- aktualizacja zale¿nych agregatów w modelu poprzez zdarzenia domenowe (eventual consistency)
+- NIE wstrzykiwanie zale¿noœci do agregatów (serwisów, polityk, specyfikacji itd.), ale przekazywanie zale¿noœci w parametrach metod agregatu
+- DomainEventsPublisher - NIE wstrzykiwanie tylko dostêp przez obiekt statyczny klasy bazowej agregatów

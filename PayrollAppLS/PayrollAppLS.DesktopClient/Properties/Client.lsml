@@ -5,7 +5,7 @@
   Version="1.0.0.0"
   DefaultNavigationItem="!module/NavigationItems[Tasks]"
   Shell="Microsoft.LightSwitch.Cosmopolitan:CosmopolitanShell"
-  Theme="Microsoft.LightSwitch.Cosmopolitan:CosmopolitanTheme" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  Theme="Microsoft.LightSwitch.RichClient:Blue" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
   <Application.Attributes>
     <ModuleNamespace
       Namespace="LightSwitchApplication" />
@@ -156,6 +156,12 @@
     <ApplicationCommand
       Name="ScreenCommandShowCommandsListDetail"
       Target="!module/Methods[ShowCommandsListDetail]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowEmployeesListDetail"
+      Target="!module/Methods[ShowEmployeesListDetail]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowPayrollsListDetail"
+      Target="!module/Methods[ShowPayrollsListDetail]" />
   </Application.Commands>
   <Application.NavigationItems>
     <ApplicationNavigationGroup
@@ -163,14 +169,17 @@
       DefaultItem="!module/NavigationItems[Tasks]/Children[OrganizationsListDetail]">
       <ApplicationNavigationGroup.Attributes>
         <DisplayName
-          Value="Tasks" />
+          Value="General" />
       </ApplicationNavigationGroup.Attributes>
       <ApplicationNavigationLink
         Name="OrganizationsListDetail"
         Command="!module/Commands[ScreenCommandShowOrganizationsListDetail]" />
       <ApplicationNavigationLink
-        Name="CommandsListDetail"
-        Command="!module/Commands[ScreenCommandShowCommandsListDetail]" />
+        Name="EmployeesListDetail"
+        Command="!module/Commands[ScreenCommandShowEmployeesListDetail]" />
+      <ApplicationNavigationLink
+        Name="PayrollsListDetail"
+        Command="!module/Commands[ScreenCommandShowPayrollsListDetail]" />
     </ApplicationNavigationGroup>
     <ApplicationNavigationGroup
       Name="Administration">
@@ -178,6 +187,9 @@
         <DisplayName
           Value="Administration" />
       </ApplicationNavigationGroup.Attributes>
+      <ApplicationNavigationLink
+        Name="link"
+        Command="!module/Commands[ScreenCommandShowCommandsListDetail]" />
       <ApplicationNavigationLink
         Name="RolesScreen"
         Command="Microsoft.LightSwitch.Security:!module/Commands[ScreenCommandShowRolesScreen]" />
