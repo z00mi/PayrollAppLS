@@ -181,6 +181,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Model\_Diagrams\AffiliationAggregate.cd" />
     <None Include="Model\_Diagrams\EmployeeAggregate.cd" />
     <None Include="Model\_Diagrams\PayrollAggregate.cd" />
   </ItemGroup>

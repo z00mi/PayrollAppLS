@@ -1,0 +1,46 @@
+DO ZROBIENIA ===========================
+
+WIDOKI:
+
+	Desktop:
+	- widok listy pracowników
+	- widok podlisty kart czasu pracy pracownika
+	- widok podlisty informcji o sprzeda¿y pracownika
+	- widok podlisty dodatkowych op³at pracownika na rzecz organizacji
+	- widok podlisty listy p³ac
+	- dodawanie pracowników
+	- edycja pracowników
+	- usuwanie pracowników
+
+	- widok podlisty przynale¿noœci do organizacji
+	- dodawanie przynale¿noœci
+	- usuwanie przynale¿noœci
+	- edycja przynale¿noœci (sk³adka)
+
+	- widok listy "lista p³ac"
+	- widok podlisty szczegó³y listy p³ac
+
+	Web:
+	- widok listy wyp³at pracownika
+
+	- widok listy kart czasu pracy
+	- dodawanie karty czasu pracy
+	- usuwanie karty czasu pracy
+
+	- widok listy op³aty na rzecz organizacji
+	- dodawanie op³aty na rzecz organizacji
+	- usuwanie op³aty na rzecz organizacji
+
+	- widok listy informacji o sprzeda¿y
+	- dodawanie informacji o sprzeda¿y
+	- usuwanie informacji o sprzeda¿y
+
+
+Commands/Services:
+	- InitDatabase
+	- SynchronizeModel
+
+Domain:
+	- dokoñczenie specyfikacji
+	- dokoñczenie polityk
+

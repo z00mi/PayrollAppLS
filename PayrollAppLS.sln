@@ -35,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Docs", "_Docs", "{945591F2
 	ProjectSection(SolutionItems) = preProject
 		DDD Links.txt = DDD Links.txt
 		R.Martin Programowanie zwinne.txt = R.Martin Programowanie zwinne.txt
+		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject
 Global

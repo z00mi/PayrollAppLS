@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PayrollApp.Domain.Model.Affiliation">
+    <Position X="1.25" Y="2" Width="2" />
+    <Members>
+      <Method Name="Affiliation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAQQQAAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Affiliation\Affiliation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="EmployeeUid" />
+      <Property Name="OrganizationUid" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.EmployeeUid" Collapsed="true">
+    <Position X="4.75" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Employee\EmployeeUid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.OrganizationUid" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAQAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Organization\OrganizationUid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.ServiceCharge">
+    <Position X="3.75" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAIEAAEABAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ServiceCharge\ServiceCharge.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AffiliationUid" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayrollApp.Domain.Model.AffiliationUid" Collapsed="true">
+    <Position X="0.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Affiliation\AffiliationUid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
