@@ -10,6 +10,17 @@ namespace PayrollApp.Infrastructure.Repositories
     public class OrganizationsRepository: Repository, IOrganizationsRepository
     {
 
+        private Organization CreateModelOrganization(LightSwitchApplication.Organization dbOrganization)
+        {
+            return new OrganizationProxy(
+                new OrganizationUidProxy(dbOrganization.Uid),
+                new OrganizationNameProxy(dbOrganization.Name),
+                dbOrganization.WebAddress != null ? new WebAddressProxy(dbOrganization.WebAddress) : null,
+                new IntegerValueObjectProxy(dbOrganization.MembersCount),
+                new IntegerValueObjectProxy(dbOrganization.MaxMembersCount),
+                new MoneyProxy(dbOrganization.MonthlyBudget));
+        }
+
         public Organization Get(OrganizationUid uid)
         {
             var dbOrganization = GetOrDefault(uid);
@@ -50,6 +61,7 @@ namespace PayrollApp.Infrastructure.Repositories
             dbOrganization.Name = aggregate.Name;
             dbOrganization.WebAddress = aggregate.WebAddress.Value;
             dbOrganization.MembersCount = aggregate.MembersCount;
+            dbOrganization.MaxMembersCount = aggregate.MaxMembersCount;
             dbOrganization.MonthlyBudget = aggregate.MonthlyBudget;
         }
 
@@ -62,6 +74,7 @@ namespace PayrollApp.Infrastructure.Repositories
             dbOrganization.Name = aggregate.Name;
             dbOrganization.WebAddress = aggregate.WebAddress.Value;
             dbOrganization.MembersCount = aggregate.MembersCount;
+            dbOrganization.MaxMembersCount = aggregate.MaxMembersCount;
             dbOrganization.MonthlyBudget = aggregate.MonthlyBudget;
         }
 
@@ -87,16 +100,14 @@ namespace PayrollApp.Infrastructure.Repositories
                 .Where(x => x.Name == organizationName).Count() > 0;
         }
 
-        private Organization CreateModelOrganization(LightSwitchApplication.Organization dbOrganization)
+        public bool OrganizationExists(WebAddress organizationWebAddress, OrganizationUid exceptOrganizationUid)
         {
-            return new OrganizationProxy(
-                new OrganizationUidProxy(dbOrganization.Uid),
-                new OrganizationNameProxy(dbOrganization.Name),
-                dbOrganization.WebAddress != null ? new WebAddressProxy(dbOrganization.WebAddress) : null,
-                new IntegerValueObjectProxy(dbOrganization.MembersCount),
-                new MoneyProxy(dbOrganization.MonthlyBudget));
+            if (exceptOrganizationUid != null)
+                return DataWorkspace.ApplicationData.Organizations
+                    .Where(x => x.Uid != exceptOrganizationUid && x.WebAddress == organizationWebAddress).Count() > 0;
+
+            return DataWorkspace.ApplicationData.Organizations
+                .Where(x => x.WebAddress == organizationWebAddress).Count() > 0;
         }
-
-
     }
 }

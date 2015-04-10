@@ -27,6 +27,7 @@ namespace PayrollApp.AppServices
             var employee = _employeesRepository.Get(args.EmployeeUid);
 
             employee.Update(
+                args.HRId,
                 args.FirstName,
                 args.LastName,
                 args.Email != null ? EmailAddress.Create(args.Email) : null,

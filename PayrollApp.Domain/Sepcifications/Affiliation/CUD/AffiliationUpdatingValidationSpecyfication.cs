@@ -15,12 +15,13 @@ namespace PayrollApp.Domain.Sepcifications
 
         public override bool IsSatisfiedBy(Affiliation o, ref string failedMessages)
         {
-            //return 
-            //    _emailNotExists
-            //    .And(_employeeFirstAndLastNameNotExists)
-            //    .IsSatisfiedBy(o, ref failedMessages);
+            var memberIdUniqueInOrganization = new MemberIdUniqueInOrganizationSpecification(_affiliationsRepository, o.Uid);
+            var employeeUniqueInOrganization = new EmployeeUniqueInOrganizationSpecification(_affiliationsRepository, o.Uid);
 
-            return true;
+            return
+                memberIdUniqueInOrganization
+                .And(employeeUniqueInOrganization)
+                .IsSatisfiedBy(o, ref failedMessages);
         }
     }
 }

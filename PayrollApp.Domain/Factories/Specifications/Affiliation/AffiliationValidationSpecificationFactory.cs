@@ -11,16 +11,20 @@ namespace PayrollApp.Domain.Factories
 {
     public class AffiliationValidationSpecificationFactory : IAffiliationValidationSpecificationFactory
     {
+        private readonly IOrganizationsRepository _organizationsRepository;
         private readonly IAffiliationsRepository _affiliationsRepository;
 
-        public AffiliationValidationSpecificationFactory(IAffiliationsRepository affiliationsRepository)
+        public AffiliationValidationSpecificationFactory(
+            IOrganizationsRepository organizationsRepository,
+            IAffiliationsRepository affiliationsRepository)
         {
+            _organizationsRepository = organizationsRepository;
             _affiliationsRepository = affiliationsRepository;
         }
 
         public IValidationSpecification<Affiliation> GetCreatingValidationSpecification()
         {
-            return new AffiliationCreatingValidationSpecyfication(_affiliationsRepository);
+            return new AffiliationCreatingValidationSpecyfication(_organizationsRepository, _affiliationsRepository);
         }
 
         public IValidationSpecification<Affiliation> GetUpdatingValidationSpecification()
@@ -30,7 +34,7 @@ namespace PayrollApp.Domain.Factories
 
         public IValidationSpecification<Affiliation> GetDeletingValidationSpecification()
         {
-            return new AffiliationDeletingValidationSpecyfication(_affiliationsRepository);
+            return new AffiliationDeletingValidationSpecyfication();
         }
     }
 }

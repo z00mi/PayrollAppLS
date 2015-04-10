@@ -256,6 +256,7 @@
     <Compile Include="Repositories\_ModelProxy\Affiliation\AffiliationProxy.cs" />
     <Compile Include="Repositories\_ModelProxy\Affiliation\AffiliationMemberIdProxy.cs" />
     <Compile Include="Repositories\_ModelProxy\Affiliation\AffiliationUidProxy.cs" />
+    <Compile Include="Repositories\_ModelProxy\Employee\EmployeeHRIdProxy.cs" />
     <Compile Include="Repositories\_ModelProxy\Employee\PaymentClassification\CommisionedClassificationCommisionProxy.cs" />
     <Compile Include="Repositories\_ModelProxy\Employee\PaymentClassification\CommisionedClassificationProxy.cs" />
     <Compile Include="Repositories\_ModelProxy\Employee\PaymentClassification\HourlyClassificationProxy.cs" />

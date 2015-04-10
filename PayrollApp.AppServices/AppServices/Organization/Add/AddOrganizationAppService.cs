@@ -29,6 +29,7 @@ namespace PayrollApp.AppServices
             var newOrganization = Organization.Create(
                 args.Name,
                 args.WebAddress != null ? WebAddress.Create(args.WebAddress) : null,
+                args.MaxMembersCount,
                 _validationSpecificationFactory.GetCreatingValidationSpecification());
 
             _organizationRepository.Insert(newOrganization); 

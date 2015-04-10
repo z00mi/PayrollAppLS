@@ -1,24 +1,27 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using PayrollApp.Domain.Model;
 using PayrollApp.Domain.Repositories;
+using PayrollApp.Domain.Services;
 
 namespace PayrollApp.Domain.Sepcifications
 {
     public class OrganizationDeletingValidationSpecyfication : ValidationSpecification<Organization>
     {
-        private readonly IOrganizationsRepository _organizationsRepository;
+        private readonly IOrganizationsService _organizationsService;
 
-        public OrganizationDeletingValidationSpecyfication(IOrganizationsRepository organizationsRepository)
+        public OrganizationDeletingValidationSpecyfication(IOrganizationsService organizationsService)
         {
-            _organizationsRepository = organizationsRepository;
+            _organizationsService = organizationsService;
         }
 
         public override bool IsSatisfiedBy(Organization o, ref string failedMessages)
         {
-            //return 
-            //    _emailNotExists
-            //    .And(_employeeFirstAndLastNameNotExists)
-            //    .IsSatisfiedBy(o, ref failedMessages);
+            var organizationHasNotMembers = new OrganizationHasNotMembersSpecification(_organizationsService);
+
+            return 
+                organizationHasNotMembers
+                .IsSatisfiedBy(o, ref failedMessages);
 
             return true;
         }

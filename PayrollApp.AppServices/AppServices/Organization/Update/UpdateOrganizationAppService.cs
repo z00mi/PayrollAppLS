@@ -29,6 +29,7 @@ namespace PayrollApp.AppServices
             organization.Update(
                 args.Name,
                 args.WebAddress != null ? WebAddress.Create(args.WebAddress) : null,
+                args.MaxMembersCount,
                 _validationSpecificationFactory.GetUpdatingValidationSpecification());
 
             _organizationRepository.Update(organization);

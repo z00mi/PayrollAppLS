@@ -35,6 +35,15 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
+        Name="HRId"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
         Name="FirstName"
         PropertyType=":String">
         <EntityProperty.Attributes>

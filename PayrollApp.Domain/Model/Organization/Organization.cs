@@ -23,7 +23,12 @@ namespace PayrollApp.Domain.Model
         /// <summary>
         /// Ilość członków Organizacji
         /// </summary>
-        public IntegerValueObject MembersCount { get; private set; } 
+        public IntegerValueObject MembersCount { get; private set; }
+
+        /// <summary>
+        /// Maksymalna ilość członków Organizacji
+        /// </summary>
+        public IntegerValueObject MaxMembersCount { get; private set; } 
 
         /// <summary>
         /// Miesięczny budżet wyliczany na podstawie składek członków Organizacji
@@ -32,24 +37,32 @@ namespace PayrollApp.Domain.Model
 
 
 
-        protected Organization(OrganizationUid uid, OrganizationName name, NullableValObj<WebAddress> webAddress, IntegerValueObject membersCount, Money monthlyBudget)
+        protected Organization(
+            OrganizationUid uid,
+            OrganizationName name,
+            NullableValObj<WebAddress> webAddress,
+            IntegerValueObject membersCount,
+            IntegerValueObject maxMembersCount,
+            Money monthlyBudget)
             : base(uid)
         {
             Name = name;
             WebAddress = webAddress;
             MembersCount = membersCount;
+            MaxMembersCount = maxMembersCount;
             MonthlyBudget = monthlyBudget;
         }
 
         public static Organization Create(
             OrganizationName name,
             NullableValObj<WebAddress> webAddress,
+            IntegerValueObject maxMembersCount,
             IValidationSpecification<Organization> creatingValidationSpecification)
         {
             if (name == null) throw new ArgumentNullException("name");
             if (creatingValidationSpecification == null) throw new ArgumentNullException("creatingValidationSpecification");
 
-            var newOrganization = new Organization(OrganizationUid.CreateNew(), name, webAddress, 0, 0);
+            var newOrganization = new Organization(OrganizationUid.CreateNew(), name, webAddress, 0, maxMembersCount, 0);
 
             if (!creatingValidationSpecification.IsSatisfiedBy(newOrganization))
                 throw new ValidationException("Nie można utworzyć organizacji", creatingValidationSpecification.GetValidationErrorMessages());
@@ -60,12 +73,13 @@ namespace PayrollApp.Domain.Model
         public void Update(
             OrganizationName name,
             NullableValObj<WebAddress> webAddress,
+            IntegerValueObject maxMembersCount,
             IValidationSpecification<Organization> updatingValidationSpecification)
         {
             if (name == null) throw new ArgumentNullException("name");
             if (updatingValidationSpecification == null) throw new ArgumentNullException("updatingValidationSpecification");
 
-            var tmpOrganization = new Organization(this.Uid, name, webAddress, this.MembersCount, this.MonthlyBudget);
+            var tmpOrganization = new Organization(this.Uid, name, webAddress, this.MembersCount, this.MaxMembersCount, this.MonthlyBudget);
 
             if (!updatingValidationSpecification.IsSatisfiedBy(tmpOrganization)) 
                 throw new ValidationException("Nie można zaktualizować organizacji", updatingValidationSpecification.GetValidationErrorMessages());

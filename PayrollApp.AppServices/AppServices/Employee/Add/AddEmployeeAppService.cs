@@ -25,6 +25,7 @@ namespace PayrollApp.AppServices
         public Guid Invoke(AddEmployeeData args)
         {
             var newEmployee = Employee.Create(
+                args.HRId,
                 args.FirstName,
                 args.LastName,
                 args.Email != null ? EmailAddress.Create(args.Email): null,

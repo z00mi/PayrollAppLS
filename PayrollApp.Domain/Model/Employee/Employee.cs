@@ -15,20 +15,53 @@ namespace PayrollApp.Domain.Model
     {
         private List<Address> _addresses;
 
+        /// <summary>
+        /// Human Resource Id
+        /// </summary>
+        public EmployeeHRId HRId { get; private set; }
+
+        /// <summary>
+        /// Imię
+        /// </summary>
         public EmployeeFirstName FirstName { get; private set; }
+
+        /// <summary>
+        /// Nazwisko
+        /// </summary>
         public EmployeeLastName LastName { get; private set; }
+
+        /// <summary>
+        /// Email
+        /// </summary>
         public NullableValObj<EmailAddress> Email { get; private set; }
+
+        /// <summary>
+        /// Nr telefonu
+        /// </summary>
         public NullableValObj<PhoneNumber> Phone { get; private set; }
 
+        /// <summary>
+        /// Harmonogram wypłat pracownika
+        /// </summary>
         public EmployeePaymentScheduleType PaymentScheduleType { get; private set; }
+
+        /// <summary>
+        /// Typ zatrudnienia pracownika
+        /// </summary>
         public PaymentClassification PaymentClassification { get; private set; }
+
+        /// <summary>
+        /// Sposób płatności wynagrodzenia
+        /// </summary>
         public PaymentMethod PaymentMethod { get; private set; }
+
 
         /// <summary>
         /// Konstruktor dla Repository (via proxy)
         /// </summary>
         protected Employee(
             EmployeeUid uid,
+            EmployeeHRId HRId,
             EmployeeFirstName firstName,
             EmployeeLastName lastName,
             NullableValObj<EmailAddress> email,
@@ -39,6 +72,7 @@ namespace PayrollApp.Domain.Model
             PaymentMethod paymentMethod)
             : base(uid)
         {
+            this.HRId = HRId;
             FirstName = firstName;
             LastName = lastName;
             Email = email;
@@ -53,6 +87,7 @@ namespace PayrollApp.Domain.Model
         /// Konstruktor dla Factory
         /// </summary>
         public static Employee Create(
+            EmployeeHRId HRId,
             EmployeeFirstName firstName,
             EmployeeLastName lastName,
             NullableValObj<EmailAddress> email,
@@ -63,6 +98,7 @@ namespace PayrollApp.Domain.Model
             PaymentMethod paymentMethod,
             IValidationSpecification<Employee> creatingValidationSpecification)
         {
+            if (HRId == null) throw new ArgumentNullException("HRId");
             if (firstName == null) throw new ArgumentNullException("firstName");
             if (lastName == null) throw new ArgumentNullException("lastName");
             if (addresses == null) throw new ArgumentNullException("addresses");
@@ -70,7 +106,7 @@ namespace PayrollApp.Domain.Model
             if (paymentMethod == null) throw new ArgumentNullException("paymentMethod");
             if (creatingValidationSpecification == null) throw new ArgumentNullException("creatingValidationSpecification");
 
-            var employee = new Employee(EmployeeUid.CreateNew(), firstName, lastName, email, phone, addresses, paymentScheduleType, paymentClassification, paymentMethod);
+            var employee = new Employee(EmployeeUid.CreateNew(), HRId, firstName, lastName, email, phone, addresses, paymentScheduleType, paymentClassification, paymentMethod);
 
             if (!creatingValidationSpecification.IsSatisfiedBy(employee))
                 throw new ValidationException("Nie można utworzyć pracownika", creatingValidationSpecification.GetValidationErrorMessages());
@@ -85,7 +121,9 @@ namespace PayrollApp.Domain.Model
         }
 
 
-        public void Update(EmployeeFirstName firstName,
+        public void Update(
+            EmployeeHRId HRId,
+            EmployeeFirstName firstName,
             EmployeeLastName lastName,
             NullableValObj<EmailAddress> email,
             NullableValObj<PhoneNumber> phone,
@@ -95,16 +133,18 @@ namespace PayrollApp.Domain.Model
             PaymentMethod paymentMethod,
             IValidationSpecification<Employee> updatingValidationSpecification)
         {
+            if (HRId == null) throw new ArgumentNullException("HRId");
             if (firstName == null) throw new ArgumentNullException("firstName");
             if (lastName == null) throw new ArgumentNullException("lastName");
             if (addresses == null) throw new ArgumentNullException("addresses");
             if (paymentClassification == null) throw new ArgumentNullException("paymentClassification");
             if (paymentMethod == null) throw new ArgumentNullException("paymentMethod");
 
-            var tmpEmployee = new Employee(Uid, firstName, lastName, email, phone, addresses, paymentScheduleType, paymentClassification, paymentMethod);
+            var tmpEmployee = new Employee(Uid, HRId, firstName, lastName, email, phone, addresses, paymentScheduleType, paymentClassification, paymentMethod);
             if (!updatingValidationSpecification.IsSatisfiedBy(tmpEmployee))
                 throw new ValidationException("Nie można zaktualizować pracownika", updatingValidationSpecification.GetValidationErrorMessages());
 
+            this.HRId = HRId;
             FirstName = firstName;
             LastName = lastName;
             Email = email;

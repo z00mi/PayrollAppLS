@@ -29,7 +29,7 @@ namespace PayrollApp.Domain.Model
     /// Klasa bazowa agregatów
     /// </summary>
     /// <typeparam name="TUid">Typ Uid agregatu</typeparam>
-    public abstract class AggregateRoot<TUid> : AggregateRoot 
+    public abstract class AggregateRoot<TUid> : AggregateRoot
     {
         public TUid Uid { get; private set; }
 

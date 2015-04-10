@@ -10,6 +10,22 @@ namespace PayrollApp.Infrastructure.Repositories
     public class PayrollsRepository: Repository, IPayrollsRepository
     {
 
+        private Payroll CreateModelPayroll(LightSwitchApplication.Payroll dbPayroll)
+        {
+            return new PayrollProxy(
+                new PayrollUidProxy(dbPayroll.Uid),
+                new DateAndTimeProxy(dbPayroll.TimeGenerated),
+                dbPayroll.PayrollItems.Select(item =>
+                    new PayrollItemProxy(
+                        new EmployeeUidProxy(item.Employee.Uid),
+                        new MoneyProxy(item.GrossPay),
+                        new MoneyProxy(item.Deductions),
+                        new MoneyProxy(item.NetPay)
+                    )
+                )
+            );
+        }
+
         public Payroll Get(PayrollUid uid)
         {
             var dbPayroll = GetOrDefault(uid);
@@ -75,20 +91,12 @@ namespace PayrollApp.Infrastructure.Repositories
             dbPayroll.Delete(); //cascade
         }
 
-        private Payroll CreateModelPayroll(LightSwitchApplication.Payroll dbPayroll)
+        public bool PayrollExists(EmployeeUid employeeUid)
         {
-            return new PayrollProxy(
-                new PayrollUidProxy(dbPayroll.Uid),
-                new DateAndTimeProxy(dbPayroll.TimeGenerated),
-                dbPayroll.PayrollItems.Select(item =>
-                    new PayrollItemProxy(
-                        new EmployeeUidProxy(item.Employee.Uid),
-                        new MoneyProxy(item.GrossPay),
-                        new MoneyProxy(item.Deductions),
-                        new MoneyProxy(item.NetPay)
-                    )
-                )
-            );
+            return DataWorkspace.ApplicationData.PayrollItems
+                .Where(x => x.Employee.Uid == employeeUid).Count() > 0;
         }
+
+        
     }
 }

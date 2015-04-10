@@ -12,7 +12,8 @@ namespace Infrastructure.CommandHandlers
             {
                 OrganizationUid = dto.OrganizationUid.Value,
                 Name = dto.Name,
-                WebAddress = dto.WebAddress
+                WebAddress = dto.WebAddress,
+                MaxMembersCount = dto.MaxMembersCount
             };
         }
     }

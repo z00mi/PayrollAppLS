@@ -12,6 +12,17 @@ namespace PayrollApp.Infrastructure.Repositories
     public class AffiliationsRepository: Repository, IAffiliationsRepository
     {
 
+        private Affiliation CreateModelAffiliation(LightSwitchApplication.Affiliation dbAffiliation)
+        {
+            return new AffiliationProxy(
+                new AffiliationUidProxy(dbAffiliation.Uid),
+                new EmployeeUidProxy(dbAffiliation.Employee.Uid),
+                new OrganizationUidProxy(dbAffiliation.Organization.Uid),
+                new AffiliationMemberIdProxy(dbAffiliation.ModifiedBy),
+                new MoneyProxy(dbAffiliation.Dues));
+        }
+
+
         public Affiliation Get(AffiliationUid uid)
         {
             var dbAffiliation = GetOrDefault(uid);
@@ -93,14 +104,24 @@ namespace PayrollApp.Infrastructure.Repositories
             return dbAffiliation;
         }
 
-        private Affiliation CreateModelAffiliation(LightSwitchApplication.Affiliation dbAffiliation)
+        public bool AffiliationExists(OrganizationUid organizationUid, AffiliationMemberId memberId, AffiliationUid exceptAffiliationUid = null)
         {
-            return new AffiliationProxy(
-                new AffiliationUidProxy(dbAffiliation.Uid),
-                new EmployeeUidProxy(dbAffiliation.Employee.Uid),
-                new OrganizationUidProxy(dbAffiliation.Organization.Uid),
-                new AffiliationMemberIdProxy(dbAffiliation.ModifiedBy),
-                new MoneyProxy(dbAffiliation.Dues));           
+            if (exceptAffiliationUid != null)
+                return DataWorkspace.ApplicationData.Affiliations
+                    .Where(x => x.Uid != exceptAffiliationUid && x.Organization.Uid == organizationUid && x.MemberId == memberId).Count() > 0;
+
+            return DataWorkspace.ApplicationData.Affiliations
+                .Where(x => x.Organization.Uid == organizationUid && x.MemberId == memberId).Count() > 0;
+        }
+
+        public bool AffiliationExists(OrganizationUid organizationUid, EmployeeUid employeeUid, AffiliationUid exceptAffiliationUid)
+        {
+            if (exceptAffiliationUid != null)
+                return DataWorkspace.ApplicationData.Affiliations
+                    .Where(x => x.Uid != exceptAffiliationUid && x.Organization.Uid == organizationUid && x.Employee.Uid == employeeUid).Count() > 0;
+
+            return DataWorkspace.ApplicationData.Affiliations
+                .Where(x => x.Organization.Uid == organizationUid && x.Employee.Uid == employeeUid).Count() > 0;
         }
     }
 }

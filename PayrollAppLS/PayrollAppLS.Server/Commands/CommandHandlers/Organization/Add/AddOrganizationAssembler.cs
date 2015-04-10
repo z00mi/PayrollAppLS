@@ -11,7 +11,8 @@ namespace Infrastructure.CommandHandlers
             return new AddOrganizationData
             {
                 Name = dto.Name,
-                WebAddress = dto.WebAddress
+                WebAddress = dto.WebAddress,
+                MaxMembersCount = dto.MaxMembersCount
             };
         }
     }

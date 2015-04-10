@@ -60,6 +60,14 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
+        Name="MaxMembersCount"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
         Name="MonthlyBudget"
         PropertyType="Microsoft.LightSwitch.Extensions:Money">
         <EntityProperty.Attributes>

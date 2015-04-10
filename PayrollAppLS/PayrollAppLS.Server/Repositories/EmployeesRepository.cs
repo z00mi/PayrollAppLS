@@ -43,6 +43,7 @@ namespace PayrollApp.Infrastructure.Repositories
         {
             return new EmployeeProxy(
                 new EmployeeUidProxy(dbEmployee.Uid),
+                new EmployeeHRIdProxy(dbEmployee.HRId), 
                 new EmployeeFirstNameProxy(dbEmployee.FirstName),
                 new EmployeeLastNameProxy(dbEmployee.LastName),
                 dbEmployee.Email != null ? new EmailAddressProxy(dbEmployee.Email) : null,
@@ -127,6 +128,7 @@ namespace PayrollApp.Infrastructure.Repositories
                 .SingleOrDefault();
             CheckNotNull(dbEmployee);
 
+            dbEmployee.HRId = aggregate.HRId;
             dbEmployee.FirstName = aggregate.FirstName;
             dbEmployee.LastName = aggregate.LastName;
             dbEmployee.Email = aggregate.Email.Value;
@@ -269,17 +271,33 @@ namespace PayrollApp.Infrastructure.Repositories
 
         public bool EmployeeExists(NullableValObj<EmailAddress> employeeEmail, EmployeeUid exceptEmployeeUid)
         {
-            //TODO !!!
-            return this.DataWorkspace.ApplicationData.Employees
-                .Count(x => (employeeEmail.HasValue && x.Email == employeeEmail.Value)) > 0; 
+            if (exceptEmployeeUid != null)
+                return DataWorkspace.ApplicationData.Employees
+                    .Where(x => x.Uid != exceptEmployeeUid && employeeEmail.HasValue && x.Email == employeeEmail.Value).Count() > 0; 
+
+            return DataWorkspace.ApplicationData.Employees
+                .Where(x => employeeEmail.HasValue && x.Email == employeeEmail.Value).Count() > 0; 
         }
 
-        public bool EmployeeExists(EmployeeFirstName employeeFirstName, EmployeeLastName employeeLastName, EmployeeUid exceptEmployeeUid)
+        public bool EmployeeExists(EmployeeHRId employeeHRId, EmployeeUid exceptEmployeeUid)
         {
-            //TODO !!!
-            if (employeeFirstName == null) throw new ArgumentNullException("employeeFirstName");
-            if (employeeLastName == null) throw new ArgumentNullException("employeeLastName");
-            throw new NotImplementedException();
+            if (exceptEmployeeUid != null)
+                return DataWorkspace.ApplicationData.Employees
+                    .Where(x => x.Uid != exceptEmployeeUid && x.HRId == employeeHRId).Count() > 0;
+
+            return DataWorkspace.ApplicationData.Employees
+                .Where(x => x.HRId == employeeHRId).Count() > 0;
+        }
+
+
+        public bool EmployeeExists(NullableValObj<PhoneNumber> employeePhone, EmployeeUid exceptEmployeeUid)
+        {
+            if (exceptEmployeeUid != null)
+                return DataWorkspace.ApplicationData.Employees
+                    .Where(x => x.Uid != exceptEmployeeUid && employeePhone.HasValue && x.Email == employeePhone.Value).Count() > 0;
+
+            return DataWorkspace.ApplicationData.Employees
+                .Where(x => employeePhone.HasValue && x.Email == employeePhone.Value).Count() > 0; 
         }
     }
 }

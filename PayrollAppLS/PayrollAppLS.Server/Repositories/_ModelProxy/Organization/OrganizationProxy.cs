@@ -8,7 +8,7 @@ namespace PayrollApp.Infrastructure.Repositories
 {
     public class OrganizationProxy: Organization
     {
-        public OrganizationProxy(OrganizationUid uid, OrganizationName name, NullableValObj<WebAddress> webAddress, IntegerValueObject membersCount, Money monthlyBudget) : base(uid, name, webAddress, membersCount, monthlyBudget)
+        public OrganizationProxy(OrganizationUid uid, OrganizationName name, NullableValObj<WebAddress> webAddress, IntegerValueObject membersCount, IntegerValueObject maxMembersCount, Money monthlyBudget) : base(uid, name, webAddress, membersCount, maxMembersCount, monthlyBudget)
         {
         }
     }

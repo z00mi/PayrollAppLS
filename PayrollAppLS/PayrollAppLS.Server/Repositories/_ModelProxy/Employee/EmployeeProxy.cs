@@ -8,7 +8,7 @@ namespace PayrollApp.Infrastructure.Repositories
 {
     public class EmployeeProxy : Employee
     {
-        public EmployeeProxy(EmployeeUid uid, EmployeeFirstName firstName, EmployeeLastName lastName, NullableValObj<EmailAddress> email, NullableValObj<PhoneNumber> phone, IEnumerable<Address> addresses, EmployeePaymentScheduleType paymentScheduleType, PaymentClassification paymentClassification, PaymentMethod paymentMethod) : base(uid, firstName, lastName, email, phone, addresses, paymentScheduleType, paymentClassification, paymentMethod)
+        public EmployeeProxy(EmployeeUid uid, EmployeeHRId HRId, EmployeeFirstName firstName, EmployeeLastName lastName, NullableValObj<EmailAddress> email, NullableValObj<PhoneNumber> phone, IEnumerable<Address> addresses, EmployeePaymentScheduleType paymentScheduleType, PaymentClassification paymentClassification, PaymentMethod paymentMethod) : base(uid, HRId, firstName, lastName, email, phone, addresses, paymentScheduleType, paymentClassification, paymentMethod)
         {
         }
     }

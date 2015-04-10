@@ -4,9 +4,9 @@ using PayrollApp.Domain.Specifications;
 
 namespace PayrollApp.Domain.Sepcifications
 {
-    public class EmployeeAddressesAreUniqueSpecyfication : ExpressionSpecification<Employee>
+    public class EmployeeAddressesUniqueSpecyfication : ExpressionSpecification<Employee>
     {
-        public EmployeeAddressesAreUniqueSpecyfication()
+        public EmployeeAddressesUniqueSpecyfication()
             : base(AddressesAreUnique, "Adresy nie są unikalne")
         {
         }

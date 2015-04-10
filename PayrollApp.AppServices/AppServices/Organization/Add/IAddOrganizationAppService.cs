@@ -10,6 +10,7 @@ namespace PayrollApp.AppServices
     {
         public string Name { get; set; }
         public string WebAddress { get; set; }
+        public int MaxMembersCount { get; set; }
     }
 
     public interface IAddOrganizationAppService

@@ -5,16 +5,20 @@ namespace PayrollApp.Domain.Sepcifications
 {
     public class EmployeeDeletingValidationSpecyfication : ValidationSpecification<Employee>
     {
-        private readonly IEmployeesRepository _employeesRepository;
+        private readonly IPayrollsRepository _payrollsRepository;
 
-        public EmployeeDeletingValidationSpecyfication(IEmployeesRepository employeesRepository)
+        public EmployeeDeletingValidationSpecyfication(IPayrollsRepository payrollsRepository)
         {
-            _employeesRepository = employeesRepository;
+            _payrollsRepository = payrollsRepository;
         }
 
         public override bool IsSatisfiedBy(Employee o, ref string failedMessages)
         {
-            return true; //TODO warunki (nie mozna usunac jesli jest w Payroll???)
+            var hasNotPayroll = new EmployeeHasNotPayrollSpecification(_payrollsRepository);
+
+            return
+                hasNotPayroll
+                .IsSatisfiedBy(o, ref failedMessages);
         }
     }
 }

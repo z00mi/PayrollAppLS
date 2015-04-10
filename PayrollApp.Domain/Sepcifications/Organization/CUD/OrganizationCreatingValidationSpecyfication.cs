@@ -6,16 +6,21 @@ namespace PayrollApp.Domain.Sepcifications
 {
     public class OrganizationCreatingValidationSpecyfication : ValidationSpecification<Organization>
     {
-        private readonly OrganizationNameNotExistsSpecyfication _nameNotExists;
+        private readonly IOrganizationsRepository _organizationsRepository;
 
         public OrganizationCreatingValidationSpecyfication(IOrganizationsRepository organizationsRepository)
         {
-            _nameNotExists = new OrganizationNameNotExistsSpecyfication(organizationsRepository);
+            _organizationsRepository = organizationsRepository;
         }
 
         public override bool IsSatisfiedBy(Organization o, ref string failedMessages)
         {
-            return _nameNotExists 
+            var nameUnique = new OrganizationNameUniqueSpecyfication(_organizationsRepository);
+            var webAddressUnique = new OrganizationWebAddressUniqueSpecyfication(_organizationsRepository);
+
+            return 
+                nameUnique 
+                .And(webAddressUnique)
                 .IsSatisfiedBy(o, ref failedMessages);
         }
     }

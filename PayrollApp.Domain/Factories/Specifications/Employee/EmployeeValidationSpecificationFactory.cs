@@ -12,10 +12,14 @@ namespace PayrollApp.Domain.Factories
     public class EmployeeValidationSpecificationFactory : IEmployeeValidationSpecificationFactory
     {
         private readonly IEmployeesRepository _employeesRepository;
+        private readonly IPayrollsRepository _payrollsRepository;
 
-        public EmployeeValidationSpecificationFactory(IEmployeesRepository employeesRepository)
+        public EmployeeValidationSpecificationFactory(
+            IEmployeesRepository employeesRepository,
+            IPayrollsRepository payrollsRepository)
         {
             _employeesRepository = employeesRepository;
+            _payrollsRepository = payrollsRepository;
         }
 
         public IValidationSpecification<Employee> GetCreatingValidationSpecification()
@@ -30,7 +34,7 @@ namespace PayrollApp.Domain.Factories
 
         public IValidationSpecification<Employee> GetDeletingValidationSpecification()
         {
-            return new EmployeeDeletingValidationSpecyfication(_employeesRepository);
+            return new EmployeeDeletingValidationSpecyfication(_payrollsRepository);
         }
     }
 }

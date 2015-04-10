@@ -6,20 +6,14 @@ namespace PayrollApp.Domain.Sepcifications
 {
     public class AffiliationDeletingValidationSpecyfication : ValidationSpecification<Affiliation>
     {
-        private readonly IAffiliationsRepository _affiliationsRepository;
+        //TODO może tu dodać warunek sprawdzania czy uregulowano zaległe płatnosci dla organizacji???
 
-        public AffiliationDeletingValidationSpecyfication(IAffiliationsRepository affiliationsRepository)
+        public AffiliationDeletingValidationSpecyfication()
         {
-            _affiliationsRepository = affiliationsRepository;
         }
 
         public override bool IsSatisfiedBy(Affiliation o, ref string failedMessages)
         {
-            //return 
-            //    _emailNotExists
-            //    .And(_employeeFirstAndLastNameNotExists)
-            //    .IsSatisfiedBy(o, ref failedMessages);
-
             return true;
         }
     }
